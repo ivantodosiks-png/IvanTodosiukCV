@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Portfolio</title>
+    <meta name="description" content="A futuristic, clean portfolio showcasing modern web development skills">
+    <link rel="icon" type="image/jpeg" href="bilde/avatar.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span>JD</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <span id="menu-icon">☰</span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#home" class="mobile-link">Home</a>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="hero-greeting">Hello, I'm</span>
+                        <span class="hero-name">Ivan Todosiuk</span>
+                    </h1>
+                    <p class="hero-subtitle">Cybersecurity Student & Web Developer</p>
+                    <p class="hero-description">
+                        I work on projects in both web development and cybersecurity, exploring different areas of IT and building practical skills through hands-on experience. I develop not only websites, but also experiment with technologies related to system basics, networking, and application security.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-container">
+                        <div class="profile-bg"></div>
+                        <div class="profile-photo">
+                            <img src="bilde/avatar.jpg" alt="Photo of Ivan Todosiuk" class="profile-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span>Scroll Down</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About Me</h2>
+                    <p>Passionate about creating beautiful, functional, and user-centered digital experiences.</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>My Journey</h3>
+                        <p>I became interested in programming at around the age of 11. At that time, I didn’t have the opportunity to study properly or practice consistently, so eventually I had to put it aside for a while.</p>
+                        <p>Around the age of 15, I returned to programming with a more conscious approach and began actively developing my skills in the IT field. I started with web development, focusing on building websites and learning the basics of frontend development. Later, I decided to explore cybersecurity, as it seemed like a more complex and structured field. During that period, I studied Linux, Bash, and networking fundamentals, including TCP/IP.</p>
+                        <p>Over time, I realized that I wanted to focus on web development and make up for lost time. Currently, I continue to grow in this area, and in the future, I plan to learn Java, Node.js, and React to build more advanced and modern projects.</p>
+                    </div>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">🎯</div>
+                            <div class="feature-content">
+                                <h4>Problem Solver</h4>
+                                <p>Turning complex challenges into elegant solutions</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🚀</div>
+                            <div class="feature-content">
+                                <h4>Performance Focused</h4>
+                                <p>Optimizing for speed, accessibility, and user experience</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎨</div>
+                            <div class="feature-content">
+                                <h4>Design Enthusiast</h4>
+                                <p>Bridging the gap between design and development</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                    <p>A selection of projects that showcase my skills and passion for creating exceptional digital experiences.</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-placeholder hacker-icon">🎭</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>HamarTech CTF</h3>
+                            <p>A beginner-friendly CTF challenge about brute forcing logins, created for you to explore cybersecurity in a safe environment.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Bash</span>
+                                <span class="tag">Hydra</span>
+                                <span class="tag">Linux</span>
+                            </div>
+                            <a href="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" class="project-link" target="_blank" rel="noopener noreferrer">View Challenge →</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-placeholder recycle-icon">♻️</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Sirkulær Website</h3>
+                            <p>Informational website about circular economy and reuse initiatives in Hamar.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                            <a href="https://sirkula.katta-it.no/" class="project-link" target="_blank" rel="noopener noreferrer">Visit Site →</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-placeholder memory-icon">🧠</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Memory Game</h3>
+                            <p>A mini memory card game where you flip cards, find pairs and train your focus.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                            <a href="https://github.com/ivantodosiks-png/Memory-Game" class="project-link" target="_blank" rel="noopener noreferrer">Play on GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Skills & Expertise</h2>
+                    <p>A comprehensive toolkit for bringing ideas to life with modern technologies.</p>
+                </div>
+                <div class="skills-content">
+                    <div class="technical-skills">
+                        <h3>Technical Skills</h3>
+                        <div class="skill-bars">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">HTML</span>
+                                    <span class="skill-percentage">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">CSS/SCSS</span>
+                                    <span class="skill-percentage">50%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">JavaScript</span>
+                                    <span class="skill-percentage">5%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" style="width: 5%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">TypeScript</span>
+                                    <span class="skill-percentage">Learning</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">React</span>
+                                    <span class="skill-percentage">Learning</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Next.js</span>
+                                    <span class="skill-percentage">Learning</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tools-section">
+                        <h3>Tools & Technologies</h3>
+                        <div class="tools-grid">
+                            <div class="tool-item">Cursor</div>
+                            <div class="tool-item">VS Code</div>
+                            <div class="tool-item">Git</div>
+                            <div class="tool-item">Vercel</div>
+                            <div class="tool-item">Linux</div>
+                            <div class="tool-item">Bash</div>
+                        </div>
+                        <div class="learning-section">
+                            <h4>Continuous Learning</h4>
+                            <p>I’m constantly exploring new technologies and improving my skills through practice. Currently, I’m focusing on web development and cybersecurity, deepening my understanding of how systems, networks, and web applications work, and learning modern tools step by step.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Get In Touch</h2>
+                    <p>Ready to bring your ideas to life? Let's discuss your next project.</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's Connect</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">✉️</div>
+                                <div class="contact-text">
+                                    <p class="contact-label">Email</p>
+                                    <p>ivatod15@innlandetfylke.no.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-text">
+                                    <p class="contact-label">Phone</p>
+                                    <p>+47 90 69 40 41</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-text">
+                                    <p class="contact-label">Location</p>
+                                    <p>Brumunddal, Norway</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="social-section">
+                            <h4>Follow Me</h4>
+                            <div class="social-links">
+                                <a href="#" class="social-link">🐙</a>
+                                <a href="#" class="social-link">💼</a>
+                                <a href="#" class="social-link">🐦</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Ivan Todosiuk. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

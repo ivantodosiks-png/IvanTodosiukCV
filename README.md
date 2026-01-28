@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Premium Portfolio
 
-## Getting Started
+A modern, responsive portfolio website built with pure HTML5, CSS3, and vanilla JavaScript. Features a clean design with smooth animations, dark/light theme toggle, and mobile-first responsive layout.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **🎨 Modern Design**: Clean, professional design with gradient accents and smooth animations
+- **🌙 Dark/Light Theme**: Automatic theme detection with manual toggle option
+- **📱 Fully Responsive**: Mobile-first design that works perfectly on all devices
+- **⚡ Smooth Animations**: CSS animations and JavaScript-powered scroll effects
+- **🎯 Interactive Elements**: Hover effects, typing animation, and skill bar animations
+- **📧 Contact Form**: Functional contact form with validation
+- **🚀 Performance Optimized**: Fast loading with optimized assets
+- **♿ Accessibility**: Proper semantic HTML and ARIA labels
+
+## 🛠️ Tech Stack
+
+- **HTML5**: Semantic markup with modern structure
+- **CSS3**: Custom properties, flexbox, grid, and advanced animations
+- **JavaScript (ES6+)**: Vanilla JS with modern features and best practices
+- **Google Fonts**: Inter font family for clean typography
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── index.html          # Main HTML file
+├── styles.css          # All styling and animations
+├── script.js           # Interactive functionality
+└── public/             # Static assets (images, etc.)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository
+2. Open `index.html` in your web browser
+3. Enjoy your new portfolio!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎨 Customization
 
-## Learn More
+### Colors
+Edit the CSS custom properties in `:root` and `.dark` to change the color scheme:
 
-To learn more about Next.js, take a look at the following resources:
+```css
+:root {
+  --primary-color: #6366f1;    /* Main brand color */
+  --secondary-color: #8b5cf6;  /* Secondary accent */
+  --accent-color: #06b6d4;     /* Highlight color */
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Content
+Update the HTML content in `index.html`:
+- Personal information in the hero section
+- Skills and percentages in the skills section
+- Project details and links
+- Contact information
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Fonts
+Change the Google Fonts import in `index.html` to use different fonts.
 
-## Deploy on Vercel
+## 📱 Sections
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Hero**: Animated introduction with profile image and call-to-action buttons
+- **About**: Personal story and key features
+- **Projects**: Featured work with hover effects and technology tags
+- **Skills**: Technical skills with animated progress bars and tools grid
+- **Contact**: Contact form and social links
+- **Footer**: Simple footer with navigation links
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎭 Animations
+
+- **Scroll Animations**: Elements fade in as you scroll
+- **Typing Effect**: Hero subtitle has a typing animation
+- **Skill Bars**: Progress bars animate when scrolled into view
+- **Hover Effects**: Interactive hover states on cards and buttons
+- **Theme Transitions**: Smooth theme switching
+
+## 🌐 Browser Support
+
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
