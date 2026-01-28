@@ -132,7 +132,15 @@ function initSkillBars() {
 function initForm() {
   const form = document.getElementById('contact-form');
   if (form) {
+    const sendButton = form.querySelector('.send-button');
+    let isSubmitting = false;
+
     form.addEventListener('submit', (e) => {
+      if (isSubmitting) {
+        // Второй вызов (через form.submit) — даём форме отправиться нормально
+        return;
+      }
+
       e.preventDefault();
       const formData = new FormData(form);
       const data = Object.fromEntries(formData);
@@ -150,9 +158,29 @@ function initForm() {
         return;
       }
 
-      console.log('Form submitted:', data);
-      alert('Thank you for your message! I\'ll get back to you soon.');
-      form.reset();
+      // Создаём самолётик, который полетит по всему экрану
+      if (sendButton) {
+        const rect = sendButton.getBoundingClientRect();
+        const plane = document.createElement('span');
+        plane.className = 'flying-plane';
+        plane.textContent = '✈️';
+        plane.style.left = rect.left + rect.width / 2 + 'px';
+        plane.style.top = rect.top + rect.height / 2 + 'px';
+        document.body.appendChild(plane);
+
+        plane.addEventListener('animationend', () => {
+          plane.remove();
+        });
+
+        sendButton.disabled = true;
+      }
+
+      isSubmitting = true;
+
+      // Даём анимации время проиграться, затем реально отправляем форму на PHP
+      setTimeout(() => {
+        form.submit();
+      }, 1100);
     });
   }
 }
