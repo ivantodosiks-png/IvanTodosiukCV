@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // простая проверка
     if ($name === '' || $email === '' || $message === '') {
-        die('Все поля обязательны');
+        die('Alt skal respekteres');
     }
 
     // SQL-запрос для вставки данных
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
         // Покажет конкретную ошибку SQL, если что-то не так с таблицей/правами
-        die('Ошибка БД: ' . $conn->error);
+        die('Databasefeil: ' . $conn->error);
     }
 }
 
