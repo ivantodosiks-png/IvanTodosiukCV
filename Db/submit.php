@@ -22,9 +22,9 @@ $message = $conn->real_escape_string($_POST['message']);
 $sql = "INSERT INTO contacts (name, email, message) VALUES ('$name', '$email', '$message')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Данные успешно отправлены!";
+    echo "Data sent successfully!";
 } else {
-    echo "Ошибка: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 // Закрываем подключение
