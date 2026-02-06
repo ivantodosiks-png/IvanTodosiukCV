@@ -23,3 +23,5 @@ Thumbs.db
 dist/
 build/
 
+#Ignore the submit.php file as it contains sensitive information such as database credentials
+/Db/submit.php

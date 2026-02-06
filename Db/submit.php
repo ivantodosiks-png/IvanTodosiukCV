@@ -1,27 +1,20 @@
 <?php
-$env = parse_ini_file(__DIR__ . '/.env');
+// ===== Настройки базы =====
+$host = "172.16.1.98";  // если на школьном сервере localhost
+$db   = "db_portfolioivanimkattano";
+$user = "portfolioivanimkattano";
+$pass = "QwerZxc924015";
 
-$host = $env['DB_HOST'];  // 172.16.1.98
-$port = $env['DB_PORT'] ?? 3306; 
-$db   = $env['DB_NAME'];
-$user = $env['DB_USER'];
-$pass = $env['DB_PASS'];
-
-// Обязательно указываем порт
-$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
-
+// Подключаемся через PDO
 try {
-    $pdo = new PDO($dsn, $user, $pass, [
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 } catch (PDOException $e) {
     exit("Ошибка подключения к базе: " . $e->getMessage());
 }
 
-// Проверка POST и вставка данных, как раньше...
-
-
-// ===== Проверка POST =====
+// ===== Проверка, что данные пришли =====
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit("Метод не разрешён");
 }
@@ -39,10 +32,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // ===== Вставка в базу =====
-$stmt = $pdo->prepare(
-    "INSERT INTO contacts (name, email, message) VALUES (:name, :email, :message)"
-);
-
+$stmt = $pdo->prepare("INSERT INTO contacts (name, email, message) VALUES (:name, :email, :message)");
 $stmt->execute([
     ':name'    => $name,
     ':email'   => $email,
