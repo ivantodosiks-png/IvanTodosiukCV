@@ -4,6 +4,41 @@
    ======================================== */
 
 // ========================================
+// MATRIX FALLING LETTERS EFFECT
+// ========================================
+
+const MATRIX_CHARS = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン!@#$%^&*()_+-=[]{}|;:,.<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+function createFallingChar() {
+  const matrixBg = document.getElementById('matrix-bg');
+  if (!matrixBg) return;
+
+  const char = document.createElement('div');
+  char.className = 'falling-char';
+  char.textContent = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
+  
+  const startX = Math.random() * window.innerWidth;
+  const duration = 8 + Math.random() * 12;
+  
+  char.style.left = startX + 'px';
+  char.style.animationDuration = duration + 's';
+  
+  if (Math.random() > 0.7) {
+    char.classList.add('fade');
+  }
+  
+  matrixBg.appendChild(char);
+  
+  setTimeout(() => {
+    char.remove();
+  }, duration * 1000);
+}
+
+function initMatrixBackground() {
+  setInterval(createFallingChar, 150);
+}
+
+// ========================================
 // TYPING ANIMATION - Type text character by character
 // ========================================
 
@@ -152,41 +187,33 @@ function initScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+        entry.target.classList.add('fade-in');
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
   // Observe sections except hero
   document.querySelectorAll('section:not(#home)').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(50px)';
-    section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    section.classList.add('fade-on-scroll');
     observer.observe(section);
   });
 
   // Observe project cards
   document.querySelectorAll('.project-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    card.classList.add('fade-on-scroll');
     observer.observe(card);
   });
 
   // Observe feature items
   document.querySelectorAll('.feature-item').forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    item.classList.add('fade-on-scroll');
     observer.observe(item);
   });
 
   // Observe contact items
   document.querySelectorAll('.contact-item').forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    item.classList.add('fade-on-scroll');
     observer.observe(item);
   });
 }
@@ -340,6 +367,7 @@ function showTerminalHelp() {
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initMatrixBackground();
   initTheme();
   initMobileMenu();
   initSmoothScrolling();

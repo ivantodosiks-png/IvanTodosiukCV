@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Matrix falling letters effect -->
+    <div id="matrix-bg" class="matrix-bg"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -65,7 +68,7 @@
                     <div class="profile-container">
                         <div class="profile-bg"></div>
                         <div class="profile-photo">
-                            <img src="" alt="Photo of Ivan Todosiuk" class="profile-img">
+                            <img src="/images/avatar.jpg" alt="Photo of Ivan Todosiuk" class="profile-img">
                         </div>
                     </div>
                 </div>
@@ -239,7 +242,7 @@
                             </div>
                             <div class="skill-item">
                                 <div class="skill-info">
-                                    <span class="skill-name">php</span>
+                                    <span class="skill-name">Python</span>
                                     <span class="skill-percentage">Learning</span>
                                 </div>
                                 <div class="skill-bar">
@@ -277,7 +280,7 @@
                 <div class="phys-security-content">
                     <div class="phys-skill-block">
                         <h3>Mechanical Lock Analysis & Lockpicking</h3>
-                        <p>Non-destructive testing and analysis of mechanical locks. Understanding of pin tumbler mechanisms, vulnerability assessment, and security evaluation techniques. Authorized testing and professional ethical practices.</p>
+                        <p>Non‑destructive testing and analysis of mechanical locks with focus on pin‑tumbler mechanisms. Experience in identifying common vulnerabilities and evaluating lock security as part of authorized security assessments.</p>
                     </div>
                     <div class="phys-skill-block">
                         <h3>RFID / NFC Fundamentals</h3>
@@ -327,14 +330,20 @@
                         <div class="social-section">
                             <h4>Follow Me</h4>
                             <div class="social-links">
-                                <a href="https://github.com/ivantodosiks-png" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">🐙</a>
-                                <a href="https://t.me/ivanxodes" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">💬</a>
-                                <a href="https://linkedin.com" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">💼</a>
+                                <a href="https://github.com/ivantodosiks-png" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
+                                    <img src="icon-github.svg" alt="GitHub" class="social-icon">
+                                </a>
+                                <a href="https://t.me/IvanTodosiuk" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">
+                                    <img src="icon-telegram.svg" alt="Telegram" class="social-icon">
+                                </a>
+                                <a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                                    <img src="icon-linkedin.svg" alt="LinkedIn" class="social-icon">
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="contact-form">
+                        <form id="contact-form" method="POST" action="Db/submit.php">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" required>
@@ -347,7 +356,7 @@
                                 <label for="message">Message</label>
                                 <textarea id="message" name="message" rows="5" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send Message</button>
+                            <button type="submit" class="btn btn-primary send-button">Send Message</button>
                         </form>
                     </div>
                 </div>
@@ -371,6 +380,6 @@
         </div>
     </footer>
 
-    <script src="script-terminal.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

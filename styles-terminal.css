@@ -41,6 +41,37 @@
 }
 
 /* ========================================
+   MATRIX FALLING LETTERS EFFECT
+   ======================================== */
+
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  display: none;
+}
+
+.falling-char {
+  position: absolute;
+  color: var(--primary-color);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  animation: falling linear forwards;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.falling-char.fade {
+  opacity: 0.2;
+}
+
+/* ========================================
    RESET & BASE STYLES
    ======================================== */
 
@@ -60,7 +91,7 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   transition: var(--transition);
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 0.02em;
   position: relative;
   overflow-x: hidden;
@@ -85,6 +116,11 @@ body::before {
   z-index: 9998;
 }
 
+main {
+  position: relative;
+  z-index: 2;
+}
+
 /* Blinking cursor */
 @keyframes cursor-blink {
   0%, 50% { opacity: 1; }
@@ -96,9 +132,53 @@ body::before {
   to { width: 100%; }
 }
 
-@keyframes terminal-glow {
-  0%, 100% { text-shadow: 0 0 10px var(--primary-color), 0 0 20px rgba(0, 255, 65, 0.5); }
-  50% { text-shadow: 0 0 20px var(--primary-color), 0 0 40px rgba(0, 255, 65, 0.7); }
+@keyframes falling {
+  0% {
+    opacity: 1;
+    transform: translateY(-10vh);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes scanReveal {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+@keyframes imageBorderGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  }
+}
+
+@keyframes scanLines {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
 }
 
 /* ========================================
@@ -120,7 +200,7 @@ body::before {
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -128,11 +208,10 @@ body::before {
 }
 
 .nav-brand {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--primary-color);
   letter-spacing: 0.1em;
-  animation: terminal-glow 2s ease-in-out infinite;
 }
 
 .nav-brand::before {
@@ -150,7 +229,7 @@ body::before {
   color: var(--text-color);
   text-decoration: none;
   font-weight: 600;
-  transition: var(--transition);
+  transition: all 0.15s ease;
   position: relative;
   padding: 0.5rem 0.75rem;
   border: 1px solid transparent;
@@ -160,13 +239,12 @@ body::before {
   color: var(--secondary-color);
   border-left: 1px solid var(--primary-color);
   border-right: 1px solid var(--primary-color);
-  box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.1);
 }
 
 .nav-link::before {
   content: '> ';
   opacity: 0;
-  transition: var(--transition);
+  transition: opacity 0.15s ease;
 }
 
 .nav-link:hover::before {
@@ -252,7 +330,7 @@ body::before {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 2rem 4rem;
+  padding: 100px 1.5rem 3rem;
   background: var(--bg-color);
   position: relative;
 }
@@ -274,7 +352,7 @@ body::before {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: center;
   width: 100%;
 }
@@ -300,7 +378,7 @@ body::before {
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 1rem;
   line-height: 1.1;
@@ -312,7 +390,7 @@ body::before {
 .hero-greeting {
   display: block;
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 0.5rem;
   opacity: 0.8;
 }
@@ -320,11 +398,10 @@ body::before {
 .hero-name {
   color: var(--secondary-color);
   text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
-  animation: terminal-glow 2s ease-in-out infinite;
 }
 
 .hero-subtitle {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--text-color);
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -366,8 +443,6 @@ body::before {
   transition: var(--transition);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  position: relative;
-  overflow: hidden;
 }
 
 .btn::before {
@@ -385,17 +460,18 @@ body::before {
 .btn-primary {
   background: rgba(0, 255, 65, 0.15);
   color: var(--primary-color);
-  box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.1);
+  box-shadow: none;
 }
 
 .btn-primary:hover {
   background: rgba(0, 255, 65, 0.25);
-  box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.2), 0 0 20px rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
   color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 .btn-primary:active {
-  transform: translateY(2px);
+  transform: translateY(1px);
 }
 
 .btn-secondary {
@@ -408,7 +484,7 @@ body::before {
   background: rgba(0, 255, 65, 0.1);
   border-color: var(--primary-color);
   color: var(--primary-color);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.15);
 }
 
 .hero-image {
@@ -419,17 +495,20 @@ body::before {
 
 .profile-container {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   border: 2px solid var(--primary-color);
   box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  background: radial-gradient(circle at 30% 30%, rgba(0, 255, 65, 0.05), transparent);
+  animation: imageBorderGlow 3s ease-in-out 2.5s infinite;
+  overflow: hidden;
 }
 
 .profile-bg {
   position: absolute;
   inset: 0;
-  background: rgba(0, 255, 65, 0.05);
-  animation: pulse 2s infinite;
+  background: radial-gradient(circle at 30% 30%, rgba(0, 255, 65, 0.15), rgba(0, 255, 65, 0.05));
+  animation: none;
 }
 
 .profile-photo {
@@ -440,12 +519,41 @@ body::before {
   align-items: center;
   justify-content: center;
   border: 1px solid var(--primary-color);
+  overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(0, 255, 65, 0.1);
 }
 
 .profile-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  opacity: 0.95;
+  animation: scanReveal 2.5s ease-out forwards;
+  filter: brightness(1.05) contrast(1.05);
+  position: relative;
+}
+
+.profile-img::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 65, 0.03) 0px,
+    rgba(0, 255, 65, 0.03) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+}
+
+.profile-container:hover .profile-img {
+  opacity: 1;
+  filter: brightness(1.15) contrast(1.1) saturate(1.1);
 }
 
 .scroll-indicator {
@@ -454,9 +562,9 @@ body::before {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  animation: bounce 2s infinite;
   color: var(--text-muted);
   font-size: 0.85rem;
+  will-change: transform;
 }
 
 .scroll-mouse {
@@ -474,7 +582,7 @@ body::before {
   width: 2px;
   height: 8px;
   background: var(--text-muted);
-  animation: scroll 2s infinite;
+  will-change: opacity, transform;
 }
 
 /* ========================================
@@ -482,7 +590,7 @@ body::before {
    ======================================== */
 
 section {
-  padding: 5rem 0;
+  padding: 4rem 0;
   border-top: 2px solid var(--primary-color);
   position: relative;
 }
@@ -501,7 +609,7 @@ section::before {
 
 .section-header {
   text-align: left;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -509,7 +617,7 @@ section::before {
 }
 
 .section-header h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--primary-color);
@@ -537,7 +645,7 @@ section::before {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 /* ========================================
@@ -556,9 +664,9 @@ section::before {
 }
 
 .about-text h3 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--primary-color);
   position: relative;
   padding-left: 1rem;
@@ -592,6 +700,13 @@ section::before {
   padding: 1rem;
   border: 1px solid var(--primary-color);
   background: rgba(0, 255, 65, 0.05);
+  transition: var(--transition);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.1);
+}
+
+.feature-item:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  border-color: var(--secondary-color);
 }
 
 .feature-icon {
@@ -604,6 +719,14 @@ section::before {
   justify-content: center;
   font-size: 1.5rem;
   flex-shrink: 0;
+  transition: var(--transition);
+  box-shadow: 0 0 5px rgba(0, 255, 65, 0.1);
+}
+
+.feature-item:hover .feature-icon {
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  border-color: var(--secondary-color);
+  background: rgba(0, 255, 65, 0.15);
 }
 
 .feature-content h4 {
@@ -611,6 +734,11 @@ section::before {
   margin-bottom: 0.5rem;
   color: var(--primary-color);
   letter-spacing: 0.05em;
+  transition: color var(--transition);
+}
+
+.feature-item:hover .feature-content h4 {
+  color: var(--secondary-color);
 }
 
 .feature-content p {
@@ -630,8 +758,8 @@ section::before {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .project-card {
@@ -645,9 +773,11 @@ section::before {
 }
 
 .project-card:hover {
-  box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.25);
   border-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
+
 
 .project-image {
   height: 150px;
@@ -680,7 +810,7 @@ section::before {
 }
 
 .project-content h3 {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--primary-color);
@@ -755,12 +885,12 @@ section::before {
 .skills-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 3rem;
 }
 
 .technical-skills h3,
 .tools-section h3 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 2rem;
   color: var(--primary-color);
@@ -823,13 +953,14 @@ section::before {
   border: 1px solid var(--border-color);
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 0 5px rgba(0, 255, 65, 0.05);
 }
 
 .skill-fill {
   height: 100%;
   background: var(--primary-color);
   transition: width 1s ease-out;
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.35);
 }
 
 .tools-grid {
@@ -851,13 +982,14 @@ section::before {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  box-shadow: 0 0 5px rgba(0, 255, 65, 0.08);
 }
 
 .tool-item:hover {
-  background: rgba(0, 255, 65, 0.15);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  background: rgba(0, 255, 65, 0.12);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  border-color: var(--secondary-color);
   color: var(--secondary-color);
-  transform: translateY(-2px);
 }
 
 .learning-section h4 {
@@ -892,15 +1024,17 @@ section::before {
   border: 1px solid var(--primary-color);
   background: rgba(0, 255, 65, 0.05);
   transition: var(--transition);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.1);
 }
 
 .phys-skill-block:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.25);
   border-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
 .phys-skill-block h3 {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: var(--primary-color);
@@ -937,7 +1071,7 @@ section::before {
 }
 
 .contact-info h3 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 2rem;
   color: var(--primary-color);
@@ -1010,24 +1144,33 @@ section::before {
 .social-link {
   background: rgba(0, 255, 65, 0.1);
   border: 1px solid var(--primary-color);
-  color: var(--text-color);
-  padding: 0.5rem 1rem;
+  padding: 0.75rem;
   text-decoration: none;
   transition: var(--transition);
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 5px rgba(0, 255, 65, 0.08);
+}
+
+.social-icon {
+  width: 28px;
+  height: 28px;
+  filter: brightness(1);
+  transition: filter var(--transition);
 }
 
 .social-link:hover {
-  background: rgba(0, 255, 65, 0.2);
-  color: var(--secondary-color);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
-  transform: translateY(-2px);
+  background: rgba(0, 255, 65, 0.15);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.25);
+  transform: translateY(-1px);
   border-color: var(--secondary-color);
+}
+
+.social-link:hover .social-icon {
+  filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.5)) brightness(1.1);
 }
 
 /* Contact Form */
@@ -1035,7 +1178,7 @@ section::before {
   background: var(--bg-secondary);
   padding: 2rem;
   border: 1px solid var(--primary-color);
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
 }
 
 .form-group {
@@ -1068,6 +1211,7 @@ section::before {
   font-family: 'JetBrains Mono', monospace;
   transition: var(--transition);
   font-size: 0.95rem;
+  box-shadow: none;
 }
 
 .form-group input::placeholder,
@@ -1079,7 +1223,7 @@ section::before {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--secondary-color);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
 }
 
 .form-group textarea {
@@ -1156,20 +1300,18 @@ section::before {
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%, 100% {
     transform: translateY(0);
   }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
+  50% {
+    transform: translateY(-8px);
   }
 }
 
 @keyframes scroll {
   0% {
     opacity: 1;
+    transform: translateY(0);
   }
   100% {
     transform: translateY(10px);
@@ -1303,3 +1445,13 @@ section::before {
 .font-semibold { font-weight: 600; }
 .opacity-50 { opacity: 0.5; }
 .opacity-75 { opacity: 0.75; }
+
+/* Scroll animation states */
+.fade-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-on-scroll.fade-in {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
