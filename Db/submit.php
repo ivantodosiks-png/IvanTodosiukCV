@@ -6,7 +6,7 @@ foreach ($env as $key => $value) {
 }
 
 // ===== Настройки базы =====
-$host = $_ENV['DB_HOST'] ?? 'localhost'
+$host = $_ENV['DB_HOST'] ?? 'localhost';
 $db   = $_ENV['DB_NAME'] ?? 'my_database';
 $user = $_ENV['DB_USER'] ?? 'my_user';
 $pass = $_ENV['DB_PASS'] ?? 'my_password';
