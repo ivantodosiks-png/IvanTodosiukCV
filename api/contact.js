@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   try {
     // Вставляем данные в таблицу contact
     const result = await pool.query(
-      "INSERT INTO contact (name, email, message) VALUES ($1, $2, $3) RETURNING id",
+      "INSERT INTO contacts (name, email, message) VALUES ($1, $2, $3) RETURNING id",
       [name, email, message]
     );
 
