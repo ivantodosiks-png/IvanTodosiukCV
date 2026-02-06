@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Portfolio</title>
-    <meta name="description" content="A futuristic, clean portfolio showcasing modern web development skills">
-    <link rel="icon" type="image/jpeg" href="images/avatar.jpg">
-    <link rel="stylesheet" href="styles.css">
+    <title>$Pwd/portfolio</title>
+    <meta name="description" content="Terminal Portfolio - Cybersecurity & Web Development">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles-terminal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -24,7 +24,6 @@
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#contact" class="nav-link">Contact</a>
-                <a href="/no/index.html" class="nav-link">Norwegian</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-btn">
@@ -47,7 +46,7 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="home" class="hero">
+        <section id="home" class="hero" data-command="user@portfolio:~$ ./whoami">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
@@ -81,7 +80,7 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="about">
+        <section id="about" class="about" data-command="user@portfolio:~$ cat about.txt">
             <div class="container">
                 <div class="section-header">
                     <h2>About Me</h2>
@@ -122,7 +121,7 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="projects">
+        <section id="projects" class="projects" data-command="user@portfolio:~$ ls projects/"
             <div class="container">
                 <div class="section-header">
                     <h2>Featured Projects</h2>
@@ -181,7 +180,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="skills">
+        <section id="skills" class="skills" data-command="user@portfolio:~$ grep -r skills ."
             <div class="container">
                 <div class="section-header">
                     <h2>Skills & Expertise</h2>
@@ -270,7 +269,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="contact">
+        <section id="contact" class="contact" data-command="user@portfolio:~$ echo 'Contact' > message.txt"
             <div class="container">
                 <div class="section-header">
                     <h2>Get In Touch</h2>
@@ -349,6 +348,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script-terminal.js"></script>
 </body>
 </html>
