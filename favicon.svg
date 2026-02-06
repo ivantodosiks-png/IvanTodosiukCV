@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#0a0e27"/>
+  
+  <!-- Terminal border -->
+  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#00ff41" stroke-width="2"/>
+  
+  <!-- Top bar -->
+  <rect x="4" y="4" width="56" height="12" fill="#151b3d"/>
+  <text x="8" y="13" font-family="JetBrains Mono, monospace" font-size="8" fill="#00ff41" font-weight="bold">user@</text>
+  
+  <!-- Terminal lines -->
+  <text x="8" y="25" font-family="JetBrains Mono, monospace" font-size="6" fill="#00ff41">$ whoami</text>
+  <text x="8" y="33" font-family="JetBrains Mono, monospace" font-size="6" fill="#0fff50">hacker</text>
+  
+  <text x="8" y="43" font-family="JetBrains Mono, monospace" font-size="6" fill="#00ff41">$ pwd</text>
+  <text x="8" y="51" font-family="JetBrains Mono, monospace" font-size="6" fill="#0fff50">/portfolio</text>
+  
+  <!-- Cursor -->
+  <rect x="8" y="55" width="3" height="6" fill="#00ff41" opacity="0.8"/>
+</svg>
