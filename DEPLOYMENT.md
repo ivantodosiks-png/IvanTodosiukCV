@@ -52,6 +52,11 @@
    - Try submitting the contact form
    - Check if data appears in database
 
+6. **Disable debug on production:**
+   - Ensure `display_errors` is OFF on production. Our `Db/submit.php` now logs errors but does not display them.
+   - To be safe, remove or do not upload any `ini_set('display_errors', 1)` lines.
+   - Check PHP `error_log` location on the server if you need to inspect errors.
+
 ### File Structure for Deployment
 ```
 /public_html/
