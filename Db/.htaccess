@@ -1,0 +1,26 @@
+# Deny directory listing
+Options -Indexes
+
+# Only allow POST method to submit.php. Avoid complex deny rules that may
+# interfere with server configs — keep this simple so form requests work.
+<IfModule mod_authz_core.c>
+  <Files "submit.php">
+    Require method POST
+  </Files>
+</IfModule>
+
+# Note: If your host uses older Apache without mod_authz_core, you may need
+# to adjust these rules or allow access via host control panel.
+# Deny directory listing
+Options -Indexes
+
+# Only allow POST method to submit.php. Avoid complex deny rules that may
+# interfere with server configs — keep this simple so form requests work.
+<IfModule mod_authz_core.c>
+    <Files "submit.php">
+        Require method POST
+    </Files>
+</IfModule>
+
+# Note: If your host uses older Apache without mod_authz_core, you may need
+# to adjust these rules or allow access via host control panel.
