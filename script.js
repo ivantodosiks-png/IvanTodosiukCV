@@ -87,21 +87,27 @@ function initForm() {
         sendButton.disabled = true;
       }
 
-      // Отправляем данные на PHP через fetch API
-      fetch('Db/submit.php', {
+      // Отправляем данные на PHP через fetch API и ожидаем JSON
+      fetch('db/submit.php', {
         method: 'POST',
         body: formData
       })
-      .then(response => response.text())
-      .then(data => {
-        console.log('Response:', data);
-        alert(data);
-        if (data.includes('successfully')) {
+      .then(async response => {
+        const contentType = response.headers.get('content-type') || '';
+        let payload;
+        if (contentType.includes('application/json')) {
+          payload = await response.json();
+        } else {
+          payload = { status: response.ok ? 'ok' : 'error', message: await response.text() };
+        }
+        console.log('Response payload:', payload);
+        if (response.ok && payload.status === 'ok') {
+          alert(payload.message || 'Message sent');
           form.reset();
+        } else {
+          alert(payload.message || 'Error sending message');
         }
-        if (sendButton) {
-          sendButton.disabled = false;
-        }
+        if (sendButton) sendButton.disabled = false;
       })
       .catch(error => {
         console.error('Error:', error);
