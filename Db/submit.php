@@ -1,46 +1,61 @@
 <?php
 // ===== Загрузка переменных окружения из .env =====
-function loadDotEnv(string $path): void
+function loadDotEnvPaths(array $paths): void
 {
-    if (!file_exists($path)) {
+    foreach ($paths as $path) {
+        if (!is_string($path) || $path === '') {
+            continue;
+        }
+
+        if (!file_exists($path)) {
+            continue;
+        }
+
+        foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            if (!str_contains($line, '=')) {
+                continue;
+            }
+
+            [$name, $value] = explode('=', $line, 2);
+            $name = trim($name);
+            $value = trim($value);
+
+            if ((str_starts_with($value, '"') && str_ends_with($value, '"')) || (str_starts_with($value, "'") && str_ends_with($value, "'"))) {
+                $value = substr($value, 1, -1);
+            }
+
+            putenv("{$name}={$value}");
+            $_ENV[$name] = $value;
+        }
+
+        // stop after first existing file is loaded
         return;
-    }
-
-    foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-        $line = trim($line);
-        if ($line === '' || str_starts_with($line, '#')) {
-            continue;
-        }
-
-        if (!str_contains($line, '=')) {
-            continue;
-        }
-
-        [$name, $value] = explode('=', $line, 2);
-        $name = trim($name);
-        $value = trim($value);
-
-        if ((str_starts_with($value, '"') && str_ends_with($value, '"')) || (str_starts_with($value, "'") && str_ends_with($value, "'"))) {
-            $value = substr($value, 1, -1);
-        }
-
-        putenv("{$name}={$value}");
-        $_ENV[$name] = $value;
     }
 }
 
-// Попробуем загрузить .env из корня проекта (один уровень выше папки Db)
-loadDotEnv(dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env');
+// Попробуем загрузить .env из нескольких мест: корень проекта, папка Db, текущая рабочая директория
+$candidateEnv = [
+    dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env',
+    __DIR__ . DIRECTORY_SEPARATOR . '.env',
+    getcwd() . DIRECTORY_SEPARATOR . '.env',
+];
+loadDotEnvPaths($candidateEnv);
 
 // ===== НАСТРОЙКИ БАЗЫ (из окружения) =====
-$host = getenv('DB_HOST') ?: null;
-$db   = getenv('DB_NAME') ?: null;
-$user = getenv('DB_USER') ?: null;
-$pass = getenv('DB_PASS') ?: null;
-$charset = getenv('DB_CHARSET') ?: 'utf8mb4';
+$host = getenv('DB_HOST') ?: ($_ENV['DB_HOST'] ?? null);
+$db   = getenv('DB_NAME') ?: ($_ENV['DB_NAME'] ?? null);
+$user = getenv('DB_USER') ?: ($_ENV['DB_USER'] ?? null);
+$pass = getenv('DB_PASS') ?: (getenv('DB_PASSWORD') ?: ($_ENV['DB_PASS'] ?? ($_ENV['DB_PASSWORD'] ?? null)));
+$charset = getenv('DB_CHARSET') ?: ($_ENV['DB_CHARSET'] ?? 'utf8mb4');
 
 // Если какие-то параметры не заданы — даём нейтральную ошибку
-if (!$host || !$db || !$user || $pass === null) {
+if (empty($host) || empty($db) || empty($user) || ($pass === null || $pass === false)) {
+    error_log('submit.php: missing DB env vars (DB_HOST=' . ($host ?: 'NULL') . ', DB_NAME=' . ($db ?: 'NULL') . ', DB_USER=' . ($user ?: 'NULL') . ', DB_PASS_SET=' . (isset($pass) && $pass !== null ? 'yes' : 'no') . ')');
     http_response_code(500);
     exit("Database credentials are not configured. Please copy .env.example to .env and set values.");
 }
