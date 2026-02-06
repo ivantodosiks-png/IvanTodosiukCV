@@ -46,6 +46,54 @@ $candidateEnv = [
 ];
 loadDotEnvPaths($candidateEnv);
 
+// Fallback: directly parse the first existing .env file into an array (avoid relying on getenv/$_ENV availability)
+function parseEnvFile(string $path): array
+{
+    $result = [];
+    if (!file_exists($path)) {
+        return $result;
+    }
+
+    foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if ($line === '' || str_starts_with($line, '#') || !str_contains($line, '=')) {
+            continue;
+        }
+
+        [$name, $value] = explode('=', $line, 2);
+        $name = trim($name);
+        $value = trim($value);
+        if ((str_starts_with($value, '"') && str_ends_with($value, '"')) || (str_starts_with($value, "'") && str_ends_with($value, "'"))) {
+            $value = substr($value, 1, -1);
+        }
+        $result[$name] = $value;
+    }
+
+    return $result;
+}
+
+// find first existing .env path
+$foundEnvPath = null;
+foreach ($candidateEnv as $p) {
+    if (is_string($p) && file_exists($p)) {
+        $foundEnvPath = $p;
+        break;
+    }
+}
+
+if ($foundEnvPath) {
+    $envFromFile = parseEnvFile($foundEnvPath);
+    // set missing vars from parsed file
+    $host = $host ?: ($envFromFile['DB_HOST'] ?? $host);
+    $db   = $db   ?: ($envFromFile['DB_NAME'] ?? $db);
+    $user = $user ?: ($envFromFile['DB_USER'] ?? $user);
+    // accept both DB_PASS and DB_PASSWORD
+    $pass = ($pass !== null && $pass !== false) ? $pass : ($envFromFile['DB_PASS'] ?? ($envFromFile['DB_PASSWORD'] ?? $pass));
+    $charset = $charset ?: ($envFromFile['DB_CHARSET'] ?? $charset);
+
+    error_log('submit.php loaded env from: ' . $foundEnvPath);
+}
+
 // ===== НАСТРОЙКИ БАЗЫ (из окружения) =====
 $host = getenv('DB_HOST') ?: ($_ENV['DB_HOST'] ?? null);
 $db   = getenv('DB_NAME') ?: ($_ENV['DB_NAME'] ?? null);
