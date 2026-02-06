@@ -1,6 +1,6 @@
 <?php
 // ===== НАСТРОЙКИ БАЗЫ =====
-$host = "l172.16.1.98";
+$host = "172.16.1.98";
 $db   = "db_portfolioivanimkattano";
 $user = "portfolioivanimkattano";
 $pass = "QwerZxc924015";
