@@ -94,6 +94,20 @@ if ($foundEnvPath) {
     error_log('submit.php loaded env from: ' . $foundEnvPath);
 }
 
+// DEBUG flag (set DEBUG=true in .env to get more details in response)
+$debug = strtolower((getenv('DEBUG') ?: ($_ENV['DEBUG'] ?? 'false')));
+$debugEnabled = in_array($debug, ['1','true','yes'], true);
+
+// Log presence (not values) of DB variables for debugging
+error_log(sprintf("submit.php env check: DB_HOST=%s, DB_NAME=%s, DB_USER=%s, DB_PASS_SET=%s, DB_CHARSET=%s, DEBUG=%s",
+    ($host ? 'yes' : 'no'),
+    ($db ? 'yes' : 'no'),
+    ($user ? 'yes' : 'no'),
+    ($pass !== null && $pass !== false ? 'yes' : 'no'),
+    ($charset ?: 'none'),
+    ($debugEnabled ? 'yes' : 'no')
+));
+
 // ===== НАСТРОЙКИ БАЗЫ (из окружения) =====
 $host = getenv('DB_HOST') ?: ($_ENV['DB_HOST'] ?? null);
 $db   = getenv('DB_NAME') ?: ($_ENV['DB_NAME'] ?? null);
@@ -103,8 +117,18 @@ $charset = getenv('DB_CHARSET') ?: ($_ENV['DB_CHARSET'] ?? 'utf8mb4');
 
 // Если какие-то параметры не заданы — даём нейтральную ошибку
 if (empty($host) || empty($db) || empty($user) || ($pass === null || $pass === false)) {
-    error_log('submit.php: missing DB env vars (DB_HOST=' . ($host ?: 'NULL') . ', DB_NAME=' . ($db ?: 'NULL') . ', DB_USER=' . ($user ?: 'NULL') . ', DB_PASS_SET=' . (isset($pass) && $pass !== null ? 'yes' : 'no') . ')');
+    $missing = [];
+    if (empty($host)) { $missing[] = 'DB_HOST'; }
+    if (empty($db)) { $missing[] = 'DB_NAME'; }
+    if (empty($user)) { $missing[] = 'DB_USER'; }
+    if ($pass === null || $pass === false) { $missing[] = 'DB_PASS/DB_PASSWORD'; }
+
+    error_log('submit.php: missing DB env vars: ' . implode(',', $missing));
     http_response_code(500);
+    if ($debugEnabled) {
+        header('Content-Type: text/plain; charset=utf-8');
+        exit("Missing DB environment variables: " . implode(', ', $missing));
+    }
     exit("Database credentials are not configured. Please copy .env.example to .env and set values.");
 }
 
@@ -119,7 +143,13 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
+    // Log full exception for server-side debugging
+    error_log('submit.php PDOException: ' . $e->getMessage());
     http_response_code(500);
+    if ($debugEnabled) {
+        header('Content-Type: text/plain; charset=utf-8');
+        exit("Database connection failed: " . $e->getMessage());
+    }
     exit("Database connection failed");
 }
 
