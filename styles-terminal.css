@@ -874,6 +874,55 @@ section::before {
 }
 
 /* ========================================
+   PHYSICAL SECURITY SECTION
+   ======================================== */
+
+.physical-security {
+  background: var(--bg-color);
+}
+
+.phys-security-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.phys-skill-block {
+  padding: 1.5rem;
+  border: 1px solid var(--primary-color);
+  background: rgba(0, 255, 65, 0.05);
+  transition: var(--transition);
+}
+
+.phys-skill-block:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+  border-color: var(--secondary-color);
+}
+
+.phys-skill-block h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.phys-skill-block h3::before {
+  content: '├─ ';
+  opacity: 0.7;
+  margin-right: 0.25rem;
+}
+
+.phys-skill-block p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  border-left: 2px solid var(--primary-color);
+  padding-left: 1rem;
+}
+
+/* ========================================
    CONTACT SECTION
    ======================================== */
 
@@ -959,23 +1008,26 @@ section::before {
 }
 
 .social-link {
-  width: 44px;
-  height: 44px;
-  background: var(--bg-secondary);
+  background: rgba(0, 255, 65, 0.1);
   border: 1px solid var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
   text-decoration: none;
   transition: var(--transition);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-link:hover {
-  background: rgba(0, 255, 65, 0.15);
+  background: rgba(0, 255, 65, 0.2);
   color: var(--secondary-color);
   box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
   transform: translateY(-2px);
+  border-color: var(--secondary-color);
 }
 
 /* Contact Form */
@@ -1178,7 +1230,8 @@ section::before {
 
   .about-content,
   .skills-content,
-  .contact-content {
+  .contact-content,
+  .phys-security-content {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
