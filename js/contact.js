@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contactForm");
+  const form = document.getElementById("contact-form");
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // останавливаем перезагрузку страницы
+    e.preventDefault(); // ОЧЕНЬ ВАЖНО — останавливает стандартный submit
+
+    const status = document.getElementById("form-status");
+    status.textContent = "Отправка...";
 
     const data = Object.fromEntries(new FormData(form));
 
@@ -16,13 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await res.json();
 
       if (result.success) {
-        alert("Сообщение отправлено!");
+        status.textContent = "Сообщение отправлено!";
         form.reset();
       } else {
-        alert("Ошибка: " + result.error);
+        status.textContent = "Ошибка: " + result.error;
       }
     } catch (err) {
-      alert("Ошибка сети: " + err.message);
+      status.textContent = "Ошибка сети: " + err.message;
     }
   });
 });
