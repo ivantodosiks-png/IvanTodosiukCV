@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const status = document.getElementById("form-status");
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // останавливает стандартный submit (очень важно!)
+    e.preventDefault(); 
 
-    status.textContent = "Отправка...";
+    status.textContent = "Sending...";
 
     const data = Object.fromEntries(new FormData(form));
 
@@ -19,13 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await res.json();
 
       if (result.success) {
-        status.textContent = "Сообщение отправлено!";
+        status.textContent = "Message sent!";
         form.reset();
       } else {
-        status.textContent = "Ошибка: " + result.error;
+        status.textContent = "Error: " + result.error;
       }
     } catch (err) {
-      status.textContent = "Ошибка сети: " + err.message;
+      status.textContent = "Error network: " + err.message;
     }
   });
 });
