@@ -1,21 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Background -->
-  <rect width="64" height="64" fill="#0a0e27"/>
-  
-  <!-- Terminal border -->
-  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#00ff41" stroke-width="2"/>
-  
-  <!-- Top bar -->
-  <rect x="4" y="4" width="56" height="12" fill="#151b3d"/>
-  <text x="8" y="13" font-family="JetBrains Mono, monospace" font-size="8" fill="#00ff41" font-weight="bold">user@</text>
-  
-  <!-- Terminal lines -->
-  <text x="8" y="25" font-family="JetBrains Mono, monospace" font-size="6" fill="#00ff41">$ whoami</text>
-  <text x="8" y="33" font-family="JetBrains Mono, monospace" font-size="6" fill="#0fff50">hacker</text>
-  
-  <text x="8" y="43" font-family="JetBrains Mono, monospace" font-size="6" fill="#00ff41">$ pwd</text>
-  <text x="8" y="51" font-family="JetBrains Mono, monospace" font-size="6" fill="#0fff50">/portfolio</text>
-  
-  <!-- Cursor -->
-  <rect x="8" y="55" width="3" height="6" fill="#00ff41" opacity="0.8"/>
+  <defs>
+    <linearGradient id="g" x1="8" y1="6" x2="57" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9d90ff"/>
+      <stop offset="1" stop-color="#54d5fa"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="#0d101b"/>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#g)" fill-opacity=".13" stroke="url(#g)" stroke-opacity=".6"/>
+  <path d="M19 20h6v24h-6V20Zm10 0h21v5H29v-5Zm7.5 4h6v20h-6V24Z" fill="url(#g)"/>
 </svg>

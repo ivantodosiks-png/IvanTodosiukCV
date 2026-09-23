@@ -1,385 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$Pwd/portfolio</title>
-    <meta name="description" content="Terminal Portfolio - Cybersecurity & Web Development">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles-terminal.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ivan Todosiuk — Full-Stack Developer portfolio. Web development, Linux and digital experiences.">
+  <meta name="theme-color" content="#080a12">
+  <title>Ivan Todosiuk — Full-Stack Developer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Matrix falling letters effect -->
-    <div id="matrix-bg" class="matrix-bg"></div>
+  <div class="page-noise" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <span>IT</span>
-            </div>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#physical-security" class="nav-link">Physical</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-        </div>
-        </div>
-        <div id="mobile-menu" class="mobile-menu">
-            <a href="#home" class="mobile-link">Home</a>
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#projects" class="mobile-link">Projects</a>
-            <a href="#skills" class="mobile-link">Skills</a>
-            <a href="#physical-security" class="mobile-link">Physical</a>
-            <a href="#contact" class="mobile-link">Contact</a>
-        </div>
+  <header class="navbar" id="navbar">
+    <div class="nav-shell">
+      <a class="brand" href="#home" aria-label="Ivan Todosiuk — home">
+        <span class="brand-mark">IT</span>
+        <span class="brand-name">Ivan Todosiuk</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-contact js-open-contact" type="button">Let's talk</button>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+      <button class="js-open-contact" type="button">Let's talk</button>
     </nav>
+  </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero" data-command="Ivan@portfolio:~$ ./whoami">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        <span class="hero-greeting">Hello, I'm</span>
-                        <span class="hero-name">Ivan Todosiuk</span>
-                    </h1>
-                    <p class="hero-subtitle">Cybersecurity Student & Web Developer</p>
-                    <p class="hero-description">
-                        I work on projects in both web development and cybersecurity, exploring different areas of IT and building practical skills through hands-on experience. I develop not only websites, but also experiment with technologies related to system basics, networking, and application security.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="profile-container">
-                        <div class="profile-bg"></div>
-                        <div class="profile-photo">
-                            <img src="/images/avatar.jpg" alt="Photo of Ivan Todosiuk" class="profile-img">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
-                </div>
-                <span>Scroll Down</span>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about" data-command="Ivan@portfolio:~$ cat about.txt">
-            <div class="container">
-                <div class="section-header">
-                    <h2>About Me</h2>
-                    <p>Passionate about creating beautiful, functional, and user-centered digital experiences.</p>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>My Journey</h3>
-                        <p>I became interested in programming at around the age of 11. At that time, I didn’t have the opportunity to study properly or practice consistently, so eventually I had to put it aside for a while.</p>
-                        <p>Around the age of 15, I returned to programming with a more conscious approach and began actively developing my skills in the IT field. I started with web development, focusing on building websites and learning the basics of frontend development. Later, I decided to explore cybersecurity, as it seemed like a more complex and structured field. During that period, I studied Linux, Bash, and networking fundamentals, including TCP/IP.</p>
-                        <p>Over time, I realized that I wanted to focus on web development and make up for lost time. Currently, I continue to grow in this area, and in the future, I plan to learn Java, Node.js, and React to build more advanced and modern projects.</p>
-                    </div>
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <div class="feature-icon">🎯</div>
-                            <div class="feature-content">
-                                <h4>Problem Solver</h4>
-                                <p>Turning complex challenges into elegant solutions</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">🚀</div>
-                            <div class="feature-content">
-                                <h4>Performance Focused</h4>
-                                <p>Optimizing for speed, accessibility, and user experience</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">🎨</div>
-                            <div class="feature-content">
-                                <h4>Design Enthusiast</h4>
-                                <p>Bridging the gap between design and development</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects" data-command="Ivan@portfolio:~$ ls projects/"
-            <div class="container">
-                <div class="section-header">
-                    <h2>Featured Projects</h2>
-                    <p>A selection of projects that showcase my skills and passion for creating exceptional digital experiences.</p>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder hacker-icon">🎭</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>HamarTech CTF</h3>
-                            <p>A beginner-friendly CTF challenge about brute forcing logins, created for you to explore cybersecurity in a safe environment.</p>
-                            <div class="project-tags">
-                                <span class="tag">HTML</span>
-                                <span class="tag">CSS</span>
-                                <span class="tag">Bash</span>
-                                <span class="tag">Hydra</span>
-                                <span class="tag">Linux</span>
-                            </div>
-                            <a href="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" class="project-link" target="_blank" rel="noopener noreferrer">View Challenge →</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder recycle-icon">♻️</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Sirkulær Website</h3>
-                            <p>Informational website about circular economy and reuse initiatives in Hamar.</p>
-                            <div class="project-tags">
-                                <span class="tag">HTML</span>
-                                <span class="tag">CSS</span>
-                                <span class="tag">JavaScript</span>
-                            </div>
-                            <a href="https://sirkula.katta-it.no/" class="project-link" target="_blank" rel="noopener noreferrer">Visit Site →</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder memory-icon">🧠</div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Memory Game</h3>
-                            <p>A mini memory card game where you flip cards, find pairs and train your focus.</p>
-                            <div class="project-tags">
-                                <span class="tag">HTML</span>
-                                <span class="tag">CSS</span>
-                                <span class="tag">JavaScript</span>
-                            </div>
-                            <a href="https://github.com/ivantodosiks-png/Memory-Game" class="project-link" target="_blank" rel="noopener noreferrer">Play on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills" data-command="Ivan@portfolio:~$ grep -r skills ."
-            <div class="container">
-                <div class="section-header">
-                    <h2>Skills & Expertise</h2>
-                    <p>A comprehensive toolkit for bringing ideas to life with modern technologies.</p>
-                </div>
-                <div class="skills-content">
-                    <div class="technical-skills">
-                        <h3>Technical Skills</h3>
-
-                        <div class="skill-bars">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">HTML</span>
-                                    <span class="skill-percentage">60%</span>
-                                </div>
-
-                                <div class="skill-bar">
-                                    <div class="skill-fill" style="width: 60%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">CSS/SCSS</span>
-                                    <span class="skill-percentage">55%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" style="width: 55%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Linux / Bash (Terminal)</span>
-                                    <span class="skill-percentage">60%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" style="width: 60%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">JavaScript</span>
-                                    <span class="skill-percentage">5%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" style="width: 5%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">React</span>
-                                    <span class="skill-percentage">Learning</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" style="width: 0%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Python</span>
-                                    <span class="skill-percentage">Learning</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" style="width: 0%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tools-section">
-                        <h3>Tools & Technologies</h3>
-                        <div class="tools-grid">
-                            <div class="tool-item">Cursor</div>
-                            <div class="tool-item">VS Code</div>
-                            <div class="tool-item">Git</div>
-                            <div class="tool-item">Vercel</div>
-                            <div class="tool-item">Linux</div>
-                            <div class="tool-item">Bash</div>
-                        </div>
-                        <div class="learning-section">
-                            <h4>Continuous Learning</h4>
-                            <p>I’m constantly exploring new technologies and improving my skills through practice. Currently, I’m focusing on web development and cybersecurity, deepening my understanding of how systems, networks, and web applications work, and learning modern tools step by step.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Physical Security Section -->
-        <section id="physical-security" class="physical-security" data-command="Ivan@portfolio:~$ cat physical_security.skills">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Physical Security</h2>
-                    <p>Non-destructive testing & security analysis expertise.</p>
-                </div>
-                <div class="phys-security-content">
-                    <div class="phys-skill-block">
-                        <h3>Mechanical Lock Analysis & Lockpicking</h3>
-                        <p>Non‑destructive testing and analysis of mechanical locks with focus on pin‑tumbler mechanisms. Experience in identifying common vulnerabilities and evaluating lock security as part of authorized security assessments.</p>
-                    </div>
-                    <div class="phys-skill-block">
-                        <h3>RFID / NFC Fundamentals</h3>
-                        <p>Understanding of RFID and NFC technologies in access control systems. Knowledge of frequency bands, communication protocols, and security mechanisms. Assessment of contactless card systems in real-world environments.</p>
-                    </div>
-                    <div class="phys-skill-block">
-                        <h3>RFID Card Emulation & Cloning</h3>
-                        <p>Authorized testing of RFID systems through card emulation and cloning techniques. Security assessment of access control implementations. Practical experience with common RFID/NFC platforms in laboratory and authorized field environments.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact" data-command="Ivan@portfolio:~$ echo 'Contact' > message.txt"
-            <div class="container">
-                <div class="section-header">
-                    <h2>Get In Touch</h2>
-                    <p>Ready to bring your ideas to life? Let's discuss your next project.</p>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Let's Connect</h3>
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <div class="contact-icon">✉️</div>
-                                <div class="contact-text">
-                                    <p class="contact-label">Email</p>
-                                    <p>ivatod15@innlandetfylke.no.com</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">📞</div>
-                                <div class="contact-text">
-                                    <p class="contact-label">Phone</p>
-                                    <p>+47 90 69 40 41</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">📍</div>
-                                <div class="contact-text">
-                                    <p class="contact-label">Location</p>
-                                    <p>Brumunddal, Norway</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="social-section">
-                            <h4>Follow Me</h4>
-                            <div class="social-links">
-                                <a href="https://github.com/ivantodosiks-png" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
-                                    <img src="icon-github.svg" alt="GitHub" class="social-icon">
-                                </a>
-                                <a href="https://t.me/IvanTodosiuk" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">
-                                    <img src="icon-telegram.svg" alt="Telegram" class="social-icon">
-                                </a>
-                                <a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-                                    <img src="icon-linkedin.svg" alt="LinkedIn" class="social-icon">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                   <div class="contact-form">
-  <form id="contact-form" novalidate>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div class="form-group">
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary send-button">Send Message</button>
-    <p id="form-status" style="margin-top:10px;"></p> <!-- для вывода статуса -->
-  </form>
-</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2026 Ivan Todosiuk. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="glow glow-one" aria-hidden="true"></div><div class="glow glow-two" aria-hidden="true"></div>
+      <div class="orb orb-one" aria-hidden="true"></div><div class="orb orb-two" aria-hidden="true"></div>
+      <div class="container hero-layout">
+        <div class="hero-copy reveal is-visible">
+          <div class="eyebrow"><span></span> Available for new projects</div>
+          <p class="hero-intro">Hello, I'm Ivan Todosiuk</p>
+          <h1>Full-Stack<br><span>Developer.</span></h1>
+          <p class="hero-description">I build thoughtful web experiences and explore the systems behind them — from clean interfaces to backend logic, Linux and application security.</p>
+          <div class="direction-list" aria-label="Areas of expertise"><span>Frontend</span><span>Backend</span><span>Linux</span><span>Web Development</span></div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View projects <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <button class="button button-secondary js-open-contact" type="button">Contact me</button>
+          </div>
+          <div class="hero-socials" aria-label="Social profiles"><span>Find me on</span><a href="https://github.com/ivantodosiks-png" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://t.me/IvanTodosiuk" target="_blank" rel="noopener noreferrer">Telegram</a></div>
         </div>
-    </footer>
+        <div class="hero-visual reveal is-visible">
+          <div class="portrait-halo" aria-hidden="true"></div>
+          <div class="portrait-card">
+            <div class="portrait-topline"><span>Based in Norway</span><span class="status-dot">Open to work</span></div>
+            <div class="portrait-wrap"><img src="images/avatar.jpg" alt="Portrait of Ivan Todosiuk" width="853" height="1280"><div class="portrait-shade"></div></div>
+            <div class="portrait-footer"><div><strong>Web</strong><span>Development</span></div><div><strong>IT</strong><span>&amp; Security</span></div><div><strong>Always</strong><span>Learning</span></div></div>
+          </div>
+          <div class="floating-card floating-code" aria-hidden="true"><span class="float-icon">◇</span><span><small>Focus</small>Clean experiences</span></div>
+          <div class="floating-card floating-location" aria-hidden="true"><span class="pulse"></span><span><small>Location</small>Brumunddal, NO</span></div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to about section"><span></span>Scroll to explore</a>
+    </section>
 
-    <script src="script.js"></script>
-    <script src="/js/contact.js"></script>
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section-heading reveal"><p class="section-kicker">About me</p><h2>Curiosity turned into<br><span>a craft.</span></h2></div>
+        <div class="about-layout">
+          <div class="about-story reveal">
+            <p class="lead">I started exploring programming at 11. Today, I approach technology with more purpose — learning by building and turning ideas into useful digital products.</p>
+            <p>My path began with frontend development and expanded into Linux, Bash, networking and application security. That broader view helps me understand both what people see and the technology working behind it.</p>
+            <p>I am currently focused on growing as a web developer and learning React, Node.js and Java to create more complete, modern applications.</p>
+          </div>
+          <div class="principles-grid">
+            <article class="principle-card reveal"><span class="card-number">01</span><h3>Thoughtful solutions</h3><p>I break complex problems into clear, practical steps.</p></article>
+            <article class="principle-card reveal"><span class="card-number">02</span><h3>Built to perform</h3><p>Speed, accessibility and usability shape every decision.</p></article>
+            <article class="principle-card reveal"><span class="card-number">03</span><h3>Always improving</h3><p>Each project is a chance to learn a better way to build.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="section-heading section-heading-row reveal"><div><p class="section-kicker">Selected work</p><h2>Projects with<br><span>real purpose.</span></h2></div><p class="heading-note">A collection of practical projects across web development and cybersecurity.</p></div>
+        <div class="projects-grid">
+          <article class="project-card project-featured reveal">
+            <div class="project-art project-art-ctf"><div class="art-grid"></div><span class="project-index">01</span><div class="project-symbol">H</div></div>
+            <div class="project-body"><div class="project-meta"><span>Cybersecurity</span><span>Featured</span></div><h3>HamarTech CTF</h3><p>A beginner-friendly challenge for exploring login security and brute-force concepts in a controlled, safe environment.</p><div class="tags"><span>HTML</span><span>CSS</span><span>Bash</span><span>Linux</span></div><a class="text-link" href="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" target="_blank" rel="noopener noreferrer">Explore project <span>↗</span></a></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-art project-art-circular"><span class="project-index">02</span><div class="rings" aria-hidden="true"><span></span><span></span><span></span></div></div>
+            <div class="project-body"><div class="project-meta"><span>Web Development</span><span>Live</span></div><h3>Sirkulær Website</h3><p>An informational website about circular economy and reuse initiatives in Hamar.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="text-link" href="https://sirkula.katta-it.no/" target="_blank" rel="noopener noreferrer">Visit website <span>↗</span></a></div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-art project-art-memory"><span class="project-index">03</span><div class="memory-shapes" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+            <div class="project-body"><div class="project-meta"><span>Interactive</span><span>Game</span></div><h3>Memory Game</h3><p>A compact card game where players find matching pairs and train their visual focus.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a class="text-link" href="https://github.com/ivantodosiks-png/Memory-Game" target="_blank" rel="noopener noreferrer">View on GitHub <span>↗</span></a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills" id="skills">
+      <div class="skills-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-heading section-heading-row reveal"><div><p class="section-kicker">Capabilities</p><h2>Tools I use to<br><span>bring ideas to life.</span></h2></div><p class="heading-note">A growing toolkit shaped by hands-on projects and continuous learning.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card skill-card-large reveal"><div class="skill-icon icon-brackets">&lt;/&gt;</div><span class="skill-level">Core</span><h3>Frontend Development</h3><p>Building responsive, clear interfaces with attention to structure and detail.</p><div class="skill-tags"><span>HTML</span><span>CSS / SCSS</span><span>JavaScript</span></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">◎</div><span class="skill-level">Exploring</span><h3>Backend</h3><p>Learning application logic, APIs and data-driven experiences.</p><div class="skill-tags"><span>Node.js</span><span>PostgreSQL</span></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">◈</div><span class="skill-level">Practical</span><h3>Linux &amp; Systems</h3><p>Working with Linux, Bash, networking fundamentals and system basics.</p><div class="skill-tags"><span>Linux</span><span>Bash</span><span>TCP/IP</span></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">✦</div><span class="skill-level">Learning</span><h3>Modern Frameworks</h3><p>Expanding into component-based development and full-stack workflows.</p><div class="skill-tags"><span>React</span><span>Java</span><span>Python</span></div></article>
+          <article class="skill-card skill-card-wide reveal"><div><div class="skill-icon">⌁</div><span class="skill-level">Toolkit</span><h3>Everyday tools</h3></div><div class="tool-cloud"><span>VS Code</span><span>Cursor</span><span>Git</span><span>Vercel</span><span>GitHub</span><span>Figma</span></div></article>
+        </div>
+        <div class="security-panel reveal"><div class="security-copy"><p class="section-kicker">Beyond the screen</p><h3>Physical security awareness</h3><p>Experience with authorized, non-destructive security analysis gives me a broader understanding of how systems behave in real-world environments.</p></div><div class="security-list"><div><span>01</span><p>Mechanical lock analysis</p></div><div><span>02</span><p>RFID / NFC fundamentals</p></div><div><span>03</span><p>Access control assessment</p></div></div></div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container"><div class="contact-panel reveal"><div class="contact-orb" aria-hidden="true"></div><p class="section-kicker">Let's work together</p><h2>Have an idea?<br><span>Let's make it real.</span></h2><p>I'm open to new projects, collaborations and conversations about web development.</p><button class="button button-light js-open-contact" type="button">Start a conversation <span>↗</span></button></div></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-inner"><a class="brand" href="#home"><span class="brand-mark">IT</span><span class="brand-name">Ivan Todosiuk</span></a><p>Full-Stack Developer · Brumunddal, Norway</p><div class="footer-links"><a href="https://github.com/ivantodosiks-png" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://t.me/IvanTodosiuk" target="_blank" rel="noopener noreferrer">Telegram</a></div><p class="copyright">© 2026 Ivan Todosiuk</p></div></footer>
+
+  <div class="modal" id="contact-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <button class="modal-close" type="button" aria-label="Close contact window" data-close-modal><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="modal-accent" aria-hidden="true"></div><p class="section-kicker">Get in touch</p><h2 id="contact-title">Let's start a<br>conversation.</h2><p class="modal-intro">Choose the most convenient way to reach me. I usually reply as soon as I can.</p>
+      <div class="contact-options">
+        <article class="contact-option"><div class="contact-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92z"/></svg></div><div class="contact-option-copy"><span>Phone</span><strong>+47 90 69 40 41</strong></div><button class="copy-button" type="button" data-copy="+47 90 69 40 41" aria-label="Copy phone number"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></article>
+        <article class="contact-option"><div class="contact-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div class="contact-option-copy"><span>Email</span><strong>ivatod15@innlandetfylke.no.com</strong></div><button class="copy-button" type="button" data-copy="ivatod15@innlandetfylke.no.com" aria-label="Copy email address"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></article>
+      </div>
+      <div class="modal-actions"><a class="button button-primary" href="tel:+4790694041">Call me</a><a class="button button-secondary" href="mailto:ivatod15@innlandetfylke.no.com">Send an email</a></div>
+      <div class="modal-socials"><span>Also on</span><a href="https://github.com/ivantodosiks-png" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://t.me/IvanTodosiuk" target="_blank" rel="noopener noreferrer">Telegram ↗</a><a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+    </div>
+  </div>
+  <div class="toast" id="copy-toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Скопировано!</div>
+  <script src="script.js"></script>
 </body>
 </html>
