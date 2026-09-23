@@ -1,19 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
-  const menuToggle = document.querySelector('.menu-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  const menuToggle = document.querySelector('.menu-button');
+  const mobileMenu = document.querySelector('.mobile-nav');
   const modal = document.getElementById('contact-modal');
   const modalDialog = modal?.querySelector('.modal-dialog');
   const openButtons = document.querySelectorAll('.js-open-contact');
   const closeButtons = document.querySelectorAll('[data-close-modal]');
   const copyButtons = document.querySelectorAll('[data-copy]');
   const toast = document.getElementById('copy-toast');
+  const sculpture = document.querySelector('[data-sculpture]');
   let previousFocus = null;
   let toastTimer = null;
 
   const updateNavbar = () => navbar?.classList.toggle('scrolled', window.scrollY > 24);
   updateNavbar();
   window.addEventListener('scroll', updateNavbar, { passive: true });
+
+  if (window.location.hash) {
+    window.setTimeout(() => {
+      const targetId = decodeURIComponent(window.location.hash.slice(1));
+      document.getElementById(targetId)?.scrollIntoView({ block: 'start' });
+    }, 120);
+  }
 
   const closeMenu = () => {
     mobileMenu?.classList.remove('is-open');
@@ -26,6 +34,37 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (sculpture && !reducedMotion) {
+    sculpture.addEventListener('pointermove', (event) => {
+      const bounds = sculpture.getBoundingClientRect();
+      const relativeX = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const relativeY = (event.clientY - bounds.top) / bounds.height - 0.5;
+      sculpture.style.setProperty('--rotate-y', `${relativeX * 7}deg`);
+      sculpture.style.setProperty('--rotate-x', `${relativeY * -5}deg`);
+    });
+
+    sculpture.addEventListener('pointerleave', () => {
+      sculpture.style.setProperty('--rotate-y', '0deg');
+      sculpture.style.setProperty('--rotate-x', '0deg');
+    });
+
+    let parallaxFrame = null;
+    const updateParallax = () => {
+      const bounds = sculpture.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const objectCenter = bounds.top + bounds.height / 2;
+      const offset = Math.max(-18, Math.min(18, (objectCenter - viewportCenter) * -0.025));
+      sculpture.style.setProperty('--scroll-y', `${offset}px`);
+      parallaxFrame = null;
+    };
+    window.addEventListener('scroll', () => {
+      if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateParallax);
+    }, { passive: true });
+    updateParallax();
+  }
 
   const openModal = () => {
     if (!modal) return;
