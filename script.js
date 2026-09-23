@@ -6,16 +6,28 @@ const sculpture = sculptureStage?.querySelector(".sculpture");
 const modal = document.querySelector("[data-modal]");
 const modalDialog = modal?.querySelector(".modal-dialog");
 const toast = document.querySelector("[data-toast]");
+const navigationLinks = [...document.querySelectorAll(".desktop-nav a[href^='#'], .mobile-nav a[href^='#']")];
+const navigationSections = [...new Set(navigationLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean))];
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let lastFocusedElement = null;
 let toastTimer;
 
 function updateHeader() {
   header?.classList.toggle("is-scrolled", window.scrollY > 20);
+
+  let currentSection = null;
+  navigationSections.forEach((section) => {
+    if (section.getBoundingClientRect().top <= window.innerHeight * 0.38) currentSection = section;
+  });
+  navigationLinks.forEach((link) => {
+    link.classList.toggle("is-active", Boolean(currentSection) && link.getAttribute("href") === `#${currentSection.id}`);
+  });
 }
 
 function closeMenu() {
   menuButton?.setAttribute("aria-expanded", "false");
   menuButton?.setAttribute("aria-label", "Open menu");
+  if (menuButton) menuButton.textContent = "Menu";
   mobileNavigation?.classList.remove("is-open");
 }
 
@@ -23,10 +35,24 @@ menuButton?.addEventListener("click", () => {
   const isOpen = menuButton.getAttribute("aria-expanded") === "true";
   menuButton.setAttribute("aria-expanded", String(!isOpen));
   menuButton.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+  menuButton.textContent = isOpen ? "Menu" : "Close";
   mobileNavigation?.classList.toggle("is-open", !isOpen);
 });
 
 mobileNavigation?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+document.querySelectorAll("a[href^='#']").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+    event.preventDefault();
+    closeMenu();
+    target.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      block: "start"
+    });
+    window.history.replaceState(null, "", link.getAttribute("href"));
+  });
+});
 window.addEventListener("scroll", updateHeader, { passive: true });
 updateHeader();
 
