@@ -1,154 +1,131 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const navbar = document.querySelector('.navbar');
-  const menuToggle = document.querySelector('.menu-button');
-  const mobileMenu = document.querySelector('.mobile-nav');
-  const modal = document.getElementById('contact-modal');
-  const modalDialog = modal?.querySelector('.modal-dialog');
-  const openButtons = document.querySelectorAll('.js-open-contact');
-  const closeButtons = document.querySelectorAll('[data-close-modal]');
-  const copyButtons = document.querySelectorAll('[data-copy]');
-  const toast = document.getElementById('copy-toast');
-  const sculpture = document.querySelector('[data-sculpture]');
-  let previousFocus = null;
-  let toastTimer = null;
+const header = document.querySelector("[data-header]");
+const menuButton = document.querySelector(".menu-button");
+const mobileNavigation = document.querySelector(".mobile-nav");
+const sculptureStage = document.querySelector("[data-sculpture]");
+const sculpture = sculptureStage?.querySelector(".sculpture");
+const modal = document.querySelector("[data-modal]");
+const modalDialog = modal?.querySelector(".modal-dialog");
+const toast = document.querySelector("[data-toast]");
+let lastFocusedElement = null;
+let toastTimer;
 
-  const updateNavbar = () => navbar?.classList.toggle('scrolled', window.scrollY > 24);
-  updateNavbar();
-  window.addEventListener('scroll', updateNavbar, { passive: true });
+function updateHeader() {
+  header?.classList.toggle("is-scrolled", window.scrollY > 20);
+}
 
-  if (window.location.hash) {
-    window.setTimeout(() => {
-      const targetId = decodeURIComponent(window.location.hash.slice(1));
-      document.getElementById(targetId)?.scrollIntoView({ block: 'start' });
-    }, 120);
-  }
+function closeMenu() {
+  menuButton?.setAttribute("aria-expanded", "false");
+  menuButton?.setAttribute("aria-label", "Open menu");
+  mobileNavigation?.classList.remove("is-open");
+}
 
-  const closeMenu = () => {
-    mobileMenu?.classList.remove('is-open');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-  };
+menuButton?.addEventListener("click", () => {
+  const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+  menuButton.setAttribute("aria-expanded", String(!isOpen));
+  menuButton.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+  mobileNavigation?.classList.toggle("is-open", !isOpen);
+});
 
-  menuToggle?.addEventListener('click', () => {
-    const isOpen = mobileMenu?.classList.toggle('is-open');
-    menuToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+mobileNavigation?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+window.addEventListener("scroll", updateHeader, { passive: true });
+updateHeader();
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("is-visible");
+    observer.unobserve(entry.target);
+  });
+}, { threshold: 0.12, rootMargin: "0px 0px -30px" });
+
+document.querySelectorAll(".reveal:not(.is-visible)").forEach((element) => revealObserver.observe(element));
+
+if (sculptureStage && sculpture && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  sculptureStage.addEventListener("pointermove", (event) => {
+    const bounds = sculptureStage.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    sculpture.style.setProperty("--rotate-y", `${x * 7}deg`);
+    sculpture.style.setProperty("--rotate-x", `${y * -5}deg`);
   });
 
-  mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  sculptureStage.addEventListener("pointerleave", () => {
+    sculpture.style.setProperty("--rotate-y", "0deg");
+    sculpture.style.setProperty("--rotate-x", "0deg");
+  });
+}
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function getFocusableElements() {
+  if (!modalDialog) return [];
+  return [...modalDialog.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])")];
+}
 
-  if (sculpture && !reducedMotion) {
-    sculpture.addEventListener('pointermove', (event) => {
-      const bounds = sculpture.getBoundingClientRect();
-      const relativeX = (event.clientX - bounds.left) / bounds.width - 0.5;
-      const relativeY = (event.clientY - bounds.top) / bounds.height - 0.5;
-      sculpture.style.setProperty('--rotate-y', `${relativeX * 7}deg`);
-      sculpture.style.setProperty('--rotate-x', `${relativeY * -5}deg`);
-    });
+function openModal() {
+  if (!modal) return;
+  lastFocusedElement = document.activeElement;
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  closeMenu();
+  window.setTimeout(() => modal.querySelector("[data-close-modal]")?.focus(), 80);
+}
 
-    sculpture.addEventListener('pointerleave', () => {
-      sculpture.style.setProperty('--rotate-y', '0deg');
-      sculpture.style.setProperty('--rotate-x', '0deg');
-    });
+function closeModal() {
+  if (!modal?.classList.contains("is-open")) return;
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
+}
 
-    let parallaxFrame = null;
-    const updateParallax = () => {
-      const bounds = sculpture.getBoundingClientRect();
-      const viewportCenter = window.innerHeight / 2;
-      const objectCenter = bounds.top + bounds.height / 2;
-      const offset = Math.max(-18, Math.min(18, (objectCenter - viewportCenter) * -0.025));
-      sculpture.style.setProperty('--scroll-y', `${offset}px`);
-      parallaxFrame = null;
-    };
-    window.addEventListener('scroll', () => {
-      if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateParallax);
-    }, { passive: true });
-    updateParallax();
-  }
+document.querySelectorAll(".js-open-contact").forEach((button) => button.addEventListener("click", openModal));
+document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
 
-  const openModal = () => {
-    if (!modal) return;
-    previousFocus = document.activeElement;
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeModal();
     closeMenu();
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-    window.setTimeout(() => modal.querySelector('.modal-close')?.focus(), 80);
-  };
-
-  const closeModal = () => {
-    if (!modal) return;
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
-    if (previousFocus instanceof HTMLElement) previousFocus.focus();
-  };
-
-  openButtons.forEach((button) => button.addEventListener('click', openModal));
-  closeButtons.forEach((button) => button.addEventListener('click', closeModal));
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal?.classList.contains('is-open')) closeModal();
-    if (event.key !== 'Tab' || !modal?.classList.contains('is-open') || !modalDialog) return;
-
-    const focusable = [...modalDialog.querySelectorAll('a[href], button:not([disabled])')];
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
-  });
-
-  const copyText = async (value) => {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(value);
-      return;
-    }
-    const input = document.createElement('textarea');
-    input.value = value;
-    input.setAttribute('readonly', '');
-    input.style.position = 'fixed';
-    input.style.opacity = '0';
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand('copy');
-    input.remove();
-  };
-
-  const showToast = () => {
-    if (!toast) return;
-    toast.classList.add('show');
-    window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(() => toast.classList.remove('show'), 1800);
-  };
-
-  copyButtons.forEach((button) => {
-    button.addEventListener('click', async () => {
-      try {
-        await copyText(button.dataset.copy || '');
-        showToast();
-      } catch {
-        button.setAttribute('aria-label', 'Could not copy');
-      }
-    });
-  });
-
-  const revealItems = document.querySelectorAll('.reveal:not(.is-visible)');
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.14, rootMargin: '0px 0px -40px' });
-    revealItems.forEach((item) => observer.observe(item));
-  } else {
-    revealItems.forEach((item) => item.classList.add('is-visible'));
+    return;
   }
+
+  if (event.key !== "Tab" || !modal?.classList.contains("is-open")) return;
+  const focusable = getFocusableElements();
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+});
+
+function showToast() {
+  if (!toast) return;
+  window.clearTimeout(toastTimer);
+  toast.classList.add("is-visible");
+  toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 1800);
+}
+
+async function copyText(value) {
+  try {
+    await navigator.clipboard.writeText(value);
+  } catch {
+    const temporaryInput = document.createElement("textarea");
+    temporaryInput.value = value;
+    temporaryInput.setAttribute("readonly", "");
+    temporaryInput.style.position = "fixed";
+    temporaryInput.style.opacity = "0";
+    document.body.appendChild(temporaryInput);
+    temporaryInput.select();
+    document.execCommand("copy");
+    temporaryInput.remove();
+  }
+  showToast();
+}
+
+document.querySelectorAll("[data-copy]").forEach((button) => {
+  button.addEventListener("click", () => copyText(button.dataset.copy));
 });

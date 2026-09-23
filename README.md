@@ -1,29 +1,27 @@
 # Ivan Todosiuk — Portfolio
 
-Персональное портфолио в сдержанном editorial / old money стиле. Сайт построен на чистом HTML, CSS и JavaScript без UI-фреймворков.
+A compact personal portfolio with a restrained editorial style. The site uses semantic HTML, responsive CSS and vanilla JavaScript without a UI framework.
 
-## Структура
+## Structure
 
-- `index.html` — основная семантическая разметка.
-- `styles.css` — палитра, адаптивная сетка, 3D-скульптура и анимации.
-- `script.js` — навигация, scroll reveal, parallax, модальное окно и копирование контактов.
-- `js/expertise.js` — отдельный Web Component секции экспертизы и её данные.
+- `index.html` contains the page structure and content.
+- `styles.css` contains the visual system, responsive layouts and motion.
+- `script.js` handles navigation, scroll reveals, sculpture movement and the contact modal.
+- `js/expertise.js` contains the interactive expertise component and its data.
 
-## Как изменить навыки
+## Editing expertise
 
-Откройте `js/expertise.js` и отредактируйте массив `EXPERTISE_DATA`. Каждая категория имеет единый формат:
+Open `js/expertise.js` and update the `expertiseData` object. Each category contains a short note and a list of technologies:
 
 ```js
-{
-  id: 'backend',
-  label: 'Backend',
-  note: 'Короткое описание',
-  technologies: ['Node.js', 'Python']
+backend: {
+  note: "Short category description.",
+  technologies: ["Node.js", "Python"]
 }
 ```
 
-Компонент автоматически создаёт меню категорий и список технологий. HTML менять не требуется.
+The component updates the technology panel and manages keyboard-accessible tabs automatically.
 
-## Запуск
+## Local preview
 
-Откройте `index.html` в браузере или запустите любой локальный статический сервер из корня проекта.
+Open `index.html` directly in a browser or serve the repository with any local static server.

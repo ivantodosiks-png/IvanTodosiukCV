@@ -1,161 +1,207 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Портфолио разработчика Ивана Тодосюка — веб-разработка, Linux и цифровые продукты.">
-  <meta name="theme-color" content="#101210">
-  <title>Ivan Todosiuk — Разработчик</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ivan Todosiuk — developer creating clean, reliable and thoughtful digital products.">
+  <meta name="theme-color" content="#0E1011">
+  <title>Ivan Todosiuk — Developer</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-
-  <header class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a class="monogram" href="#home" aria-label="На главную">IT</a>
-      <nav class="nav-links" aria-label="Основная навигация">
-        <a href="#about">Профиль</a>
-        <a href="#projects">Проекты</a>
-        <a href="#expertise">Экспертиза</a>
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="wordmark" href="#top" aria-label="Ivan Todosiuk, home">I<span>/</span>T</a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#about">About</a>
       </nav>
-      <button class="nav-contact js-open-contact" type="button">Контакты <span>↗</span></button>
-      <button class="menu-button" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><i></i><i></i></button>
+      <button class="header-contact js-open-contact" type="button">Contact <span>↗</span></button>
+      <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-navigation">Menu</button>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация">
-      <a href="#about">Профиль</a><a href="#projects">Проекты</a><a href="#expertise">Экспертиза</a>
-      <button class="js-open-contact" type="button">Контакты</button>
+    <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
+      <a href="#work">Work</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#about">About</a>
+      <button class="js-open-contact" type="button">Contact</button>
     </nav>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-ambient" aria-hidden="true"></div>
-      <div class="container hero-layout">
-        <div class="hero-copy reveal is-visible">
-          <p class="overline">Portfolio · 2026</p>
-          <h1>Ivan<br>Todosiuk</h1>
-          <div class="hero-role"><span></span><p>Разработчик</p></div>
-          <p class="hero-description">Создаю спокойные, продуманные цифровые продукты — от точного интерфейса до логики, которая стоит за ним.</p>
-          <div class="hero-actions">
-            <a class="button button-cream" href="#projects">Смотреть проекты <span>↓</span></a>
-            <button class="button button-ghost js-open-contact" type="button">Связаться со мной</button>
-          </div>
-          <div class="hero-footnote"><span>Brumunddal, Norway</span><span>Web · Systems · Linux</span></div>
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy reveal is-visible">
+        <p class="overline">Ivan Todosiuk · Norway</p>
+        <h1>Developer</h1>
+        <p class="hero-line">I build clean, reliable and thoughtful digital products.</p>
+        <div class="hero-actions">
+          <a class="button button-solid" href="#work">Projects</a>
+          <button class="button button-quiet js-open-contact" type="button">Contact</button>
         </div>
-
-        <div class="sculpture-column reveal is-visible">
-          <div class="sculpture-scene" data-sculpture role="img" aria-label="Абстрактная скульптура из светлого камня, стекла и матового металла">
-            <div class="studio-light" aria-hidden="true"></div>
-            <div class="sculpture-shadow" aria-hidden="true"></div>
-            <div class="sculpture-object">
-              <div class="stone-disc depth-back" data-depth="-0.25"></div>
-              <div class="metal-orbit depth-mid" data-depth="0.35"></div>
-              <div class="marble-form form-back" data-depth="0.15"></div>
-              <div class="marble-form form-front" data-depth="0.55"></div>
-              <div class="smoked-glass depth-front" data-depth="0.8"></div>
-              <div class="stone-sphere depth-front" data-depth="0.7"></div>
-              <div class="sculpture-plinth"><span></span></div>
-            </div>
-            <div class="sculpture-caption"><span>01 / FORM</span><span>Digital craft</span></div>
-          </div>
+        <div class="hero-footnote">
+          <span>Frontend</span><span>Backend</span><span>Linux</span><span>Web development</span>
         </div>
       </div>
-      <a class="scroll-mark" href="#about"><span></span>Scroll</a>
-    </section>
 
-    <section class="section intro" id="about">
-      <div class="container">
-        <div class="section-label reveal"><span>01</span><p>Profile</p></div>
-        <div class="intro-grid">
-          <h2 class="reveal">Технологии становятся ценными, когда ими <em>приятно пользоваться.</em></h2>
-          <div class="intro-copy reveal">
-            <p>Я начал изучать программирование в 11 лет. Сегодня развиваюсь в веб-разработке и изучаю устройство систем глубже: Linux, сети, backend и безопасность приложений.</p>
-            <p>В каждом проекте для меня важны ясная структура, внимание к деталям и практическая польза.</p>
-            <a href="#expertise" class="editorial-link">Моя экспертиза <span>↘</span></a>
-          </div>
+      <div class="sculpture-stage reveal is-visible" data-sculpture aria-label="Abstract dark stone sculpture">
+        <div class="stage-light" aria-hidden="true"></div>
+        <div class="sculpture" aria-hidden="true">
+          <svg viewBox="0 0 520 600" role="presentation">
+            <defs>
+              <linearGradient id="stone-face-a" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#555c59"/><stop offset="0.48" stop-color="#242827"/><stop offset="1" stop-color="#111314"/>
+              </linearGradient>
+              <linearGradient id="stone-face-b" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#747b77"/><stop offset="0.22" stop-color="#353a38"/><stop offset="1" stop-color="#141617"/>
+              </linearGradient>
+              <linearGradient id="stone-face-c" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stop-color="#171a1a"/><stop offset="0.66" stop-color="#383d3b"/><stop offset="1" stop-color="#686f6b"/>
+              </linearGradient>
+              <filter id="soft-shadow" x="-40%" y="-40%" width="180%" height="200%">
+                <feDropShadow dx="0" dy="28" stdDeviation="22" flood-color="#000" flood-opacity=".55"/>
+              </filter>
+            </defs>
+            <ellipse class="sculpture-shadow" cx="272" cy="530" rx="132" ry="24" fill="#050606" opacity=".62"/>
+            <g filter="url(#soft-shadow)">
+              <path d="M180 485C122 423 124 332 167 259c31-54 28-111 75-154 27-24 70-32 102-13 42 25 51 77 42 122-7 38 4 65 21 99 28 56 13 132-36 174-51 43-140 49-191-2Z" fill="url(#stone-face-a)"/>
+              <path d="M167 259c31-54 28-111 75-154 17-15 39-24 61-24l-28 173-95 231c-58-62-56-153-13-226Z" fill="url(#stone-face-b)"/>
+              <path d="m303 81-28 173 111-40c9-45 0-97-42-122a80 80 0 0 0-41-11Z" fill="#454b48" opacity=".86"/>
+              <path d="m275 254 111-40c-7 38 4 65 21 99 28 56 13 132-36 174l-96-233Z" fill="url(#stone-face-c)"/>
+              <path d="m180 485 95-231 96 233c-51 43-140 49-191-2Z" fill="#202423"/>
+              <path d="M303 82 275 254l-108 5c31-54 28-111 75-154 17-15 39-23 61-23Z" fill="#606763" opacity=".33"/>
+              <path d="M184 476c-32-40-45-91-34-140" fill="none" stroke="#a3aaa5" stroke-opacity=".18" stroke-width="2"/>
+            </g>
+          </svg>
         </div>
-        <div class="profile-details reveal">
-          <div><span>Фокус</span><strong>Web Development</strong></div>
-          <div><span>Подход</span><strong>Learn by building</strong></div>
-          <div><span>Локация</span><strong>Norway</strong></div>
-          <div><span>Статус</span><strong class="availability">Открыт к проектам</strong></div>
-        </div>
+        <div class="object-caption" aria-hidden="true"><span>Study 01</span><span>Form / Balance</span></div>
       </div>
     </section>
 
-    <section class="section work" id="projects">
-      <div class="container">
-        <div class="section-label reveal"><span>02</span><p>Selected work</p></div>
-        <div class="work-heading reveal"><h2>Избранные<br><em>проекты</em></h2><p>Практические работы на пересечении веб-разработки, интерактивных интерфейсов и информационной безопасности.</p></div>
-        <div class="project-list">
-          <a class="project-row reveal" href="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" target="_blank" rel="noopener noreferrer">
-            <span class="project-number">01</span>
-            <div class="project-title"><h3>HamarTech CTF</h3><p>Безопасная среда для знакомства с защитой авторизации</p></div>
-            <div class="project-type"><span>Cybersecurity</span><span>HTML · CSS · Linux</span></div>
-            <span class="project-arrow">↗</span>
+    <section class="section work" id="work">
+      <div class="shell">
+        <header class="section-head reveal">
+          <p class="section-label">01 / Selected work</p>
+          <h2>Projects shaped by<br>curiosity and practice.</h2>
+        </header>
+
+        <div class="work-list">
+          <a class="work-row reveal" href="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" target="_blank" rel="noopener noreferrer">
+            <span class="work-number">01</span>
+            <span class="work-title">HamarTech CTF</span>
+            <span class="work-type">Cybersecurity · 2026</span>
+            <span class="work-arrow">↗</span>
           </a>
-          <a class="project-row reveal" href="https://sirkula.katta-it.no/" target="_blank" rel="noopener noreferrer">
-            <span class="project-number">02</span>
-            <div class="project-title"><h3>Sirkulær</h3><p>Сайт об осознанном потреблении и повторном использовании</p></div>
-            <div class="project-type"><span>Web Development</span><span>HTML · CSS · JavaScript</span></div>
-            <span class="project-arrow">↗</span>
+          <a class="work-row reveal" href="https://sirkula.katta-it.no/" target="_blank" rel="noopener noreferrer">
+            <span class="work-number">02</span>
+            <span class="work-title">Sirkulær</span>
+            <span class="work-type">Web development · 2026</span>
+            <span class="work-arrow">↗</span>
           </a>
-          <a class="project-row reveal" href="https://github.com/ivantodosiks-png/Memory-Game" target="_blank" rel="noopener noreferrer">
-            <span class="project-number">03</span>
-            <div class="project-title"><h3>Memory Game</h3><p>Минималистичная игра на память и концентрацию</p></div>
-            <div class="project-type"><span>Interactive</span><span>HTML · CSS · JavaScript</span></div>
-            <span class="project-arrow">↗</span>
+          <a class="work-row reveal" href="https://github.com/ivantodosiks-png/Memory-Game" target="_blank" rel="noopener noreferrer">
+            <span class="work-number">03</span>
+            <span class="work-title">Memory Game</span>
+            <span class="work-type">Interactive experience · 2026</span>
+            <span class="work-arrow">↗</span>
           </a>
         </div>
       </div>
     </section>
 
-    <expertise-section id="expertise"></expertise-section>
+    <section class="section expertise" id="expertise">
+      <div class="shell">
+        <header class="section-head compact reveal">
+          <p class="section-label">02 / Expertise</p>
+          <h2>A considered toolkit.</h2>
+        </header>
 
-    <section class="contact-section" id="contact">
-      <div class="container">
-        <div class="contact-editorial reveal">
-          <div class="section-label"><span>04</span><p>Contact</p></div>
-          <h2>Обсудим<br><em>вашу идею.</em></h2>
-          <p>Открыт к новым проектам, сотрудничеству и хорошим разговорам о разработке.</p>
-          <button class="button button-cream js-open-contact" type="button">Начать разговор <span>↗</span></button>
-          <div class="contact-stamp" aria-hidden="true"><span>IVAN TODOSIUK</span><i>IT</i><span>DEVELOPER</span></div>
+        <div class="expertise-layout reveal" data-expertise-switcher>
+          <div class="expertise-tabs" role="tablist" aria-label="Expertise categories">
+            <button class="expertise-tab is-active" id="tab-backend" type="button" role="tab" aria-selected="true" aria-controls="expertise-panel" data-expertise="backend"><span>01</span>Backend</button>
+            <button class="expertise-tab" id="tab-frontend" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="frontend"><span>02</span>Frontend</button>
+            <button class="expertise-tab" id="tab-linux" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="linux"><span>03</span>Linux</button>
+            <button class="expertise-tab" id="tab-databases" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="databases"><span>04</span>Databases</button>
+          </div>
+          <div class="expertise-panel" id="expertise-panel" role="tabpanel" aria-labelledby="tab-backend" tabindex="0">
+            <p class="expertise-note" data-expertise-note>Server-side foundations and connected application experiences.</p>
+            <ul class="technology-list" data-technology-list>
+              <li>Node.js</li><li>Python</li><li>REST API</li><li>WebSockets</li>
+            </ul>
+          </div>
         </div>
+        <p class="placeholder-note reveal">Current placeholder skill set — to be refined as the portfolio evolves.</p>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="shell about-layout">
+        <div class="section-head compact reveal">
+          <p class="section-label">03 / Profile</p>
+          <h2>Learning through<br>making.</h2>
+        </div>
+        <div class="about-copy reveal">
+          <p class="about-lead">I am a developer based in Brumunddal, Norway, focused on creating clear and dependable web experiences.</p>
+          <p>My interests span frontend, backend, Linux and application security. I value careful decisions, useful details and steady improvement through hands-on work.</p>
+          <div class="about-links">
+            <a href="https://github.com/ivantodosiks-png" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://t.me/IvanTodosiuk" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-strip" id="contact">
+      <div class="shell contact-strip-inner reveal">
+        <div><p class="section-label">04 / Contact</p><h2>Let’s discuss what comes next.</h2></div>
+        <button class="circle-button js-open-contact" type="button" aria-label="Open contact details">↗</button>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a class="monogram" href="#home">IT</a>
-      <p>Разработчик · Brumunddal, Norway</p>
-      <div class="footer-links"><a href="https://github.com/ivantodosiks-png" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://t.me/IvanTodosiuk" target="_blank" rel="noopener noreferrer">Telegram</a></div>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <a class="wordmark" href="#top" aria-label="Back to top">I<span>/</span>T</a>
+      <p>Ivan Todosiuk · Developer</p>
       <p>© 2026</p>
     </div>
   </footer>
 
-  <div class="modal" id="contact-modal" aria-hidden="true">
+  <div class="contact-modal" data-modal aria-hidden="true">
     <div class="modal-backdrop" data-close-modal></div>
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="contact-title">
-      <button class="modal-close" type="button" aria-label="Закрыть" data-close-modal>×</button>
-      <p class="overline">Direct contact</p>
-      <h2 id="contact-title">Будем<br><em>на связи.</em></h2>
-      <p class="modal-intro">Выберите удобный способ. Контактные данные взяты из исходного проекта.</p>
-      <div class="contact-options">
-        <div class="contact-option"><span class="contact-kind">Телефон</span><strong>+47 90 69 40 41</strong><button type="button" data-copy="+47 90 69 40 41" aria-label="Скопировать телефон">Копировать</button></div>
-        <div class="contact-option"><span class="contact-kind">Email</span><strong>ivatod15@innlandetfylke.no.com</strong><button type="button" data-copy="ivatod15@innlandetfylke.no.com" aria-label="Скопировать email">Копировать</button></div>
+    <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close contact details">×</button>
+      <p class="section-label">Contact</p>
+      <h2 id="contact-title">Start a conversation.</h2>
+      <p class="modal-intro">Choose the most convenient way to reach me.</p>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <span>Phone</span>
+          <strong>+47 90 69 40 41</strong>
+          <button type="button" data-copy="+47 90 69 40 41" aria-label="Copy phone number">Copy</button>
+        </div>
+        <div class="contact-detail">
+          <span>Email</span>
+          <strong>ivatod15@innlandetfylke.no.com</strong>
+          <button type="button" data-copy="ivatod15@innlandetfylke.no.com" aria-label="Copy email address">Copy</button>
+        </div>
       </div>
-      <div class="modal-actions"><a class="button button-cream" href="tel:+4790694041">Позвонить</a><a class="button button-ghost" href="mailto:ivatod15@innlandetfylke.no.com">Написать на почту</a></div>
-      <div class="modal-socials"><a href="https://github.com/ivantodosiks-png" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://t.me/IvanTodosiuk" target="_blank" rel="noopener noreferrer">Telegram ↗</a><a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
-    </div>
+      <div class="modal-actions">
+        <a class="button button-solid" href="tel:+4790694041">Call</a>
+        <a class="button button-quiet" href="mailto:ivatod15@innlandetfylke.no.com">Send email</a>
+      </div>
+      <div class="modal-links">
+        <a href="https://github.com/ivantodosiks-png" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/ivan-todosiuk-2a48b1310/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="https://t.me/IvanTodosiuk" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+      </div>
+    </section>
   </div>
-  <div class="toast" id="copy-toast" role="status" aria-live="polite">Скопировано!</div>
 
+  <div class="toast" data-toast role="status" aria-live="polite">Copied</div>
   <script src="js/expertise.js"></script>
   <script src="script.js"></script>
 </body>

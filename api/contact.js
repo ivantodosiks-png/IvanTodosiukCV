@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       [name, email, message]
     );
 
-    console.log("Inserted row:", result.rows[0]); // для проверки в логах
+    console.log("Inserted row:", result.rows[0]); // Helpful during deployment verification.
     return res.status(200).json({ success: true, id: result.rows[0].id });
   } catch (err) {
     console.error("Database error:", err.message);
