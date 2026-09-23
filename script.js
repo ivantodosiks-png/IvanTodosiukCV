@@ -5,12 +5,38 @@ const sculptureStage = document.querySelector("[data-sculpture]");
 const sculpture = sculptureStage?.querySelector(".sculpture");
 const modal = document.querySelector("[data-modal]");
 const modalDialog = modal?.querySelector(".modal-dialog");
+const themeToggle = document.querySelector("[data-theme-toggle]");
+const themeColor = document.querySelector("meta[name='theme-color']");
+const projectModal = document.querySelector("[data-project-modal]");
+const projectModalDialog = projectModal?.querySelector(".project-modal-dialog");
+const projectFrame = projectModal?.querySelector("[data-project-frame]");
+const projectFrameWrap = projectModal?.querySelector(".project-frame-wrap");
+const projectModalTitle = projectModal?.querySelector("[data-project-modal-title]");
+const projectExternalLink = projectModal?.querySelector("[data-project-external-link]");
 const toast = document.querySelector("[data-toast]");
 const navigationLinks = [...document.querySelectorAll(".desktop-nav a[href^='#'], .mobile-nav a[href^='#']")];
 const navigationSections = [...new Set(navigationLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean))];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let lastFocusedElement = null;
 let toastTimer;
+
+function applyTheme(theme) {
+  const isLight = theme === "light";
+  document.documentElement.dataset.theme = isLight ? "light" : "dark";
+  try {
+    localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
+  } catch {
+    // The theme still works if storage is unavailable.
+  }
+  themeToggle?.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
+  themeToggle?.setAttribute("aria-pressed", String(isLight));
+  themeColor?.setAttribute("content", isLight ? "#E9EDE9" : "#0E1011");
+}
+
+applyTheme(document.documentElement.dataset.theme);
+themeToggle?.addEventListener("click", () => {
+  applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+});
 
 function updateHeader() {
   header?.classList.toggle("is-scrolled", window.scrollY > 20);
@@ -81,9 +107,9 @@ if (sculptureStage && sculpture && !window.matchMedia("(prefers-reduced-motion: 
   });
 }
 
-function getFocusableElements() {
-  if (!modalDialog) return [];
-  return [...modalDialog.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])")];
+function getFocusableElements(container) {
+  if (!container) return [];
+  return [...container.querySelectorAll("a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex='-1'])")];
 }
 
 function openModal() {
@@ -104,18 +130,55 @@ function closeModal() {
   if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
 }
 
+function openProjectModal(trigger) {
+  if (!projectModal || !projectFrame) return;
+  lastFocusedElement = trigger;
+  closeModal();
+  closeMenu();
+  const projectTitle = trigger.dataset.projectTitle || "Project";
+  projectModalTitle.textContent = projectTitle;
+  projectFrame.title = `${projectTitle} project preview`;
+  projectExternalLink.href = trigger.dataset.projectExternal || "#";
+  projectFrameWrap?.classList.remove("is-loaded");
+  projectModal.classList.add("is-open");
+  projectModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  projectFrame.src = trigger.dataset.projectUrl;
+  window.setTimeout(() => projectModal.querySelector("[data-close-project]")?.focus(), 80);
+}
+
+function closeProjectModal() {
+  if (!projectModal?.classList.contains("is-open")) return;
+  projectModal.classList.remove("is-open");
+  projectModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  projectFrameWrap?.classList.remove("is-loaded");
+  window.setTimeout(() => {
+    if (projectFrame) projectFrame.src = "about:blank";
+  }, 350);
+  if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
+}
+
 document.querySelectorAll(".js-open-contact").forEach((button) => button.addEventListener("click", openModal));
 document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+document.querySelectorAll(".js-open-project").forEach((button) => button.addEventListener("click", () => openProjectModal(button)));
+document.querySelectorAll("[data-close-project]").forEach((button) => button.addEventListener("click", closeProjectModal));
+projectFrame?.addEventListener("load", () => {
+  if (projectModal?.classList.contains("is-open")) projectFrameWrap?.classList.add("is-loaded");
+});
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    closeProjectModal();
     closeModal();
     closeMenu();
     return;
   }
 
-  if (event.key !== "Tab" || !modal?.classList.contains("is-open")) return;
-  const focusable = getFocusableElements();
+  if (event.key !== "Tab") return;
+  const activeDialog = projectModal?.classList.contains("is-open") ? projectModalDialog : modal?.classList.contains("is-open") ? modalDialog : null;
+  if (!activeDialog) return;
+  const focusable = getFocusableElements(activeDialog);
   if (!focusable.length) return;
   const first = focusable[0];
   const last = focusable[focusable.length - 1];

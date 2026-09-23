@@ -6,6 +6,13 @@
   <meta name="description" content="Ivan Todosiuk — developer creating clean, reliable and thoughtful digital products.">
   <meta name="theme-color" content="#0E1011">
   <title>Ivan Todosiuk — Developer</title>
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem("portfolio-theme") || "dark";
+    } catch {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +28,14 @@
         <a href="#expertise">Expertise</a>
         <a href="#about">About</a>
       </nav>
-      <button class="header-contact js-open-contact" type="button">Contact <span aria-hidden="true">&nearr;</span></button>
-      <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-navigation">Menu</button>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false" data-theme-toggle>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.4 8.4 0 0 1 8.8 3.6 8.5 8.5 0 1 0 20.4 15.2Z"/></svg>
+        </button>
+        <button class="header-contact js-open-contact" type="button">Contact <span aria-hidden="true">&nearr;</span></button>
+        <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-navigation">Menu</button>
+      </div>
     </div>
     <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
       <a href="#work">Work</a>
@@ -90,41 +103,41 @@
 
         <div class="projects-grid">
           <article class="project-card reveal">
-            <a class="project-preview" href="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" target="_blank" rel="noopener noreferrer" aria-label="Open HamarTech CTF project">
+            <button class="project-preview js-open-project" type="button" data-project-title="HamarTech CTF" data-project-url="project-demos/hamartech/home.html" data-project-external="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" aria-label="Preview HamarTech CTF project">
               <span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><b>hamartech.local</b></span>
               <img src="images/projects/hamartech.png" alt="Preview of the HamarTech project website" width="900" height="560" loading="lazy" decoding="async" fetchpriority="low">
-            </a>
+            </button>
             <div class="project-content">
               <div class="project-meta"><span>01</span><span>Cybersecurity</span></div>
               <h3>HamarTech CTF</h3>
               <p>A beginner-friendly challenge for exploring authentication security in a controlled environment.</p>
-              <div class="project-footer"><span>HTML · CSS · JavaScript</span><a href="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" target="_blank" rel="noopener noreferrer">View project &nearr;</a></div>
+              <div class="project-footer"><span>HTML · CSS · JavaScript</span><div class="project-actions"><a href="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge" target="_blank" rel="noopener noreferrer">GitHub</a><button class="project-open js-open-project" type="button" data-project-title="HamarTech CTF" data-project-url="project-demos/hamartech/home.html" data-project-external="https://github.com/ivantodosiks-png/HamarTech-CyberSec-Brute-Force-Challenge">Open preview &nearr;</button></div></div>
             </div>
           </article>
 
           <article class="project-card reveal">
-            <a class="project-preview" href="https://github.com/ivantodosiks-png/Sirkul-r" target="_blank" rel="noopener noreferrer" aria-label="Open Sirkulær project">
+            <button class="project-preview js-open-project" type="button" data-project-title="Sirkulær" data-project-url="project-demos/sirkula/index.html" data-project-external="https://github.com/ivantodosiks-png/Sirkul-r" aria-label="Preview Sirkulær project">
               <span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><b>sirkulaer.no</b></span>
               <img src="images/projects/sirkula.png" alt="Preview of the Sirkulær project website" width="900" height="560" loading="lazy" decoding="async" fetchpriority="low">
-            </a>
+            </button>
             <div class="project-content">
               <div class="project-meta"><span>02</span><span>Web Development</span></div>
               <h3>Sirkulær</h3>
               <p>An informational experience about circular economy and local reuse initiatives in Hamar.</p>
-              <div class="project-footer"><span>HTML · CSS · JavaScript</span><a href="https://github.com/ivantodosiks-png/Sirkul-r" target="_blank" rel="noopener noreferrer">View project &nearr;</a></div>
+              <div class="project-footer"><span>HTML · CSS · JavaScript</span><div class="project-actions"><a href="https://github.com/ivantodosiks-png/Sirkul-r" target="_blank" rel="noopener noreferrer">GitHub</a><button class="project-open js-open-project" type="button" data-project-title="Sirkulær" data-project-url="project-demos/sirkula/index.html" data-project-external="https://github.com/ivantodosiks-png/Sirkul-r">Open preview &nearr;</button></div></div>
             </div>
           </article>
 
           <article class="project-card reveal">
-            <a class="project-preview" href="https://github.com/ivantodosiks-png/Memory-Game" target="_blank" rel="noopener noreferrer" aria-label="Open Memory Game project">
+            <button class="project-preview js-open-project" type="button" data-project-title="Memory Game" data-project-url="project-demos/memory-game/index.html" data-project-external="https://github.com/ivantodosiks-png/Memory-Game" aria-label="Preview Memory Game project">
               <span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><b>memory-game.local</b></span>
               <img src="images/projects/memory-game.png" alt="Preview of the Memory Game interface" width="900" height="560" loading="lazy" decoding="async" fetchpriority="low">
-            </a>
+            </button>
             <div class="project-content">
               <div class="project-meta"><span>03</span><span>Interactive</span></div>
               <h3>Memory Game</h3>
               <p>A browser-based card game with randomized pairs, a timer and flip tracking.</p>
-              <div class="project-footer"><span>HTML · CSS · JavaScript</span><a href="https://github.com/ivantodosiks-png/Memory-Game" target="_blank" rel="noopener noreferrer">View project &nearr;</a></div>
+              <div class="project-footer"><span>HTML · CSS · JavaScript</span><div class="project-actions"><a href="https://github.com/ivantodosiks-png/Memory-Game" target="_blank" rel="noopener noreferrer">GitHub</a><button class="project-open js-open-project" type="button" data-project-title="Memory Game" data-project-url="project-demos/memory-game/index.html" data-project-external="https://github.com/ivantodosiks-png/Memory-Game">Open preview &nearr;</button></div></div>
             </div>
           </article>
         </div>
@@ -135,24 +148,33 @@
       <div class="shell">
         <header class="section-head compact reveal">
           <p class="section-label">02 / Expertise</p>
-          <h2>A considered toolkit.</h2>
+          <h2>My current toolkit.</h2>
         </header>
 
         <div class="expertise-layout reveal" data-expertise-switcher>
           <div class="expertise-tabs" role="tablist" aria-label="Expertise categories">
-            <button class="expertise-tab is-active" id="tab-backend" type="button" role="tab" aria-selected="true" aria-controls="expertise-panel" data-expertise="backend"><span>01</span>Backend</button>
-            <button class="expertise-tab" id="tab-frontend" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="frontend"><span>02</span>Frontend</button>
-            <button class="expertise-tab" id="tab-linux" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="linux"><span>03</span>Linux</button>
-            <button class="expertise-tab" id="tab-databases" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="databases"><span>04</span>Databases</button>
+            <button class="expertise-tab is-active" id="tab-frontend" type="button" role="tab" aria-selected="true" aria-controls="expertise-panel" data-expertise="frontend"><span>01</span>Frontend</button>
+            <button class="expertise-tab" id="tab-backend" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="backend"><span>02</span>Backend</button>
+            <button class="expertise-tab" id="tab-databases" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="databases"><span>03</span>Databases</button>
+            <button class="expertise-tab" id="tab-tools" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="tools"><span>04</span>Tools</button>
+            <button class="expertise-tab" id="tab-deployment" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="deployment"><span>05</span>Deployment</button>
+            <button class="expertise-tab" id="tab-linux" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="linux"><span>06</span>Linux</button>
+            <button class="expertise-tab" id="tab-security" type="button" role="tab" aria-selected="false" aria-controls="expertise-panel" tabindex="-1" data-expertise="security"><span>07</span>Security</button>
           </div>
-          <div class="expertise-panel" id="expertise-panel" role="tabpanel" aria-labelledby="tab-backend" tabindex="0">
-            <p class="expertise-note" data-expertise-note>Server-side foundations and connected application experiences.</p>
+          <div class="expertise-panel" id="expertise-panel" role="tabpanel" aria-labelledby="tab-frontend" tabindex="0">
+            <p class="expertise-note" data-expertise-note>Interfaces, responsive layouts and component-based web experiences.</p>
             <ul class="technology-list" data-technology-list>
-              <li>Node.js</li><li>Python</li><li>REST API</li><li>WebSockets</li>
+              <li><img src="images/tech/html5.svg" alt=""><span>HTML</span></li>
+              <li><img src="images/tech/css3.svg" alt=""><span>CSS</span></li>
+              <li><img src="images/tech/javascript.svg" alt=""><span>JavaScript</span></li>
+              <li><img src="images/tech/typescript.svg" alt=""><span>TypeScript</span></li>
+              <li><img src="images/tech/react.svg" alt=""><span>React</span></li>
+              <li><img src="images/tech/nextjs.svg" alt=""><span>Next.js</span></li>
+              <li><img src="images/tech/tailwindcss.svg" alt=""><span>Tailwind CSS</span></li>
             </ul>
           </div>
         </div>
-        <p class="placeholder-note reveal">A focused selection of technologies I am currently working with.</p>
+        <p class="placeholder-note reveal"><strong>Currently learning:</strong> API authorization, OAuth, JWT and more advanced authentication systems.</p>
       </div>
     </section>
 
@@ -195,6 +217,26 @@
       <p>© 2026</p>
     </div>
   </footer>
+
+  <div class="project-modal" data-project-modal aria-hidden="true">
+    <div class="project-modal-backdrop" data-close-project></div>
+    <section class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+      <header class="project-modal-header">
+        <div>
+          <span>Live preview</span>
+          <h2 id="project-modal-title" data-project-modal-title>Project</h2>
+        </div>
+        <div class="project-modal-actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" data-project-external-link>Open source &nearr;</a>
+          <button type="button" data-close-project aria-label="Close project preview">&times;</button>
+        </div>
+      </header>
+      <div class="project-frame-wrap">
+        <div class="project-loading" data-project-loading><span></span>Loading preview</div>
+        <iframe title="Project preview" data-project-frame loading="lazy" sandbox="allow-scripts allow-forms allow-modals allow-same-origin"></iframe>
+      </div>
+    </section>
+  </div>
 
   <div class="contact-modal" data-modal aria-hidden="true">
     <div class="modal-backdrop" data-close-modal></div>

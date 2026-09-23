@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beregn din sirkularitet — Sirkulære tilbud i Hamar</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">
+      <span class="logo-icon">♻️</span>
+      <span class="logo-text">Sirkulære Hamar</span>
+    </div>
+    <nav>
+      <a href="../index.html#hjem">Hjem</a>
+      <a href="../index.html#tilbud">Tilbud</a>
+      <a href="../index.html#handle">Delta</a>
+    </nav>
+    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="section quiz-page-section">
+      <div class="section-header">
+        <p class="eyebrow">Din sirkularitet</p>
+        <h2>Hvor sirkulær er du?</h2>
+        <p class="section-intro">
+          Ta vår quiz og finn ut hvor mange prosent du sirkulerer avfall. 
+          Få personlige tips for å bli enda mer sirkulær!
+        </p>
+      </div>
+
+      <div class="quiz-container-large">
+        <div class="quiz-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" id="quizProgress"></div>
+          </div>
+          <span class="progress-text" id="progressText">Spørsmål 1 av 8</span>
+        </div>
+
+        <div class="quiz-content" id="quizContent">
+          <!-- Quiz will be populated by JavaScript -->
+        </div>
+
+        <div class="quiz-results hidden" id="quizResults">
+          <!-- Results will be shown here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo-icon">♻️</span>
+        <span class="logo-text">Sirkulære Hamar</span>
+      </div>
+      <p class="footer-text">
+        Sirkulære tilbud i Hamar – gjenbruk og sirkulær økonomi for alle. 
+        Drevet av Sirkula IKS i samarbeid med Hamar kommune.
+      </p>
+      <div class="footer-links">
+        <a href="../index.html#hjem">Hjem</a>
+        <a href="../index.html#tilbud">Våre tilbud</a>
+        <a href="../index.html#handle">Hvordan delta</a>
+      </div>
+    </div>
+    <p class="footer-copyright">© 2024 Sirkulære tilbud i Hamar. Drevet av Sirkula IKS.</p>
+  </footer>
+
+  <script src="quiz.js"></script>
+</body>
+</html>
+

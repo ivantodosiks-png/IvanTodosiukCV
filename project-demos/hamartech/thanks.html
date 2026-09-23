@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gratulerer!</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #1f355c 0, #0c1629 45%, #0b1220 100%);
+      color: #e9f0ff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px 48px;
+    }
+    .shell {
+      width: 100%;
+      max-width: 880px;
+      display: grid;
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 22px 24px;
+      box-shadow: 0 18px 38px rgba(0,0,0,0.4);
+    }
+    h1 { margin: 0 0 8px; font-size: 30px; }
+    p { margin: 0 0 14px; color: #c8d4f0; }
+    .certificate {
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px dashed rgba(255,255,255,0.18);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .certificate::before, .certificate::after {
+      content: '';
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.3), rgba(99,102,241,0));
+      filter: blur(1px);
+    }
+    .certificate::before { top: -60px; left: -40px; }
+    .certificate::after { bottom: -70px; right: -30px; }
+    .cert-title { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+    .cert-name { font-size: 26px; font-weight: 800; margin: 8px 0 6px; letter-spacing: 0.5px; }
+    .cert-meta { font-size: 14px; color: #9bb0d5; margin: 4px 0; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .btn {
+      appearance: none;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0b1220;
+      background: #fbbf24;
+      transition: transform 0.08s ease, box-shadow 0.12s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn.secondary { background: #38bdf8; color: #0b1220; }
+    .btn.ghost { background: rgba(255,255,255,0.08); color: #e9f0ff; border: 1px solid rgba(255,255,255,0.18); }
+    .muted { color: #94a3b8; font-size: 13px; }
+    @media print {
+      body { background: #fff; color: #000; }
+      .card:not(.certificate) { display: none; }
+      .certificate { border-color: #000; color: #000; }
+      .certificate::before, .certificate::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="card">
+      <h1>Gratulerer! 🎉</h1>
+      <p>Du fullførte første oppgave og fant begge flaggene. Hent mini‑sertifikatet under, skriv det ut eller lagre som PDF.</p>
+    </div>
+
+    <div class="card certificate" id="certificate">
+      <div class="cert-title">Fullført sertifikat</div>
+      <div class="cert-name" id="certName">Deltaker</div>
+      <div class="cert-meta">Oppgave: Finn to flagg (admin + skjult)</div>
+      <div class="cert-meta">Fullført HamarTech: CyberSec Brute Force Challenge</div>
+      <div class="cert-meta" id="certDate"></div>
+    </div>
+
+    <div class="card">
+      <div class="actions">
+        <a class="btn secondary" id="printBtn" href="#">Skriv ut</a>
+        <a class="btn ghost" href="hidden/flag.html">Neste oppgave</a>
+        <a class="btn ghost" href="index.html">Avslutt</a>
+      </div>
+      <p class="muted">Trykk «Skriv ut» for å skrive ut siden eller lagre som PDF.</p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const certDate = document.getElementById('certDate');
+      const printBtn = document.getElementById('printBtn');
+
+      certDate.textContent = 'Dato: ' + new Date().toLocaleDateString('nb-NO');
+
+      printBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.print();
+      });
+    })();
+  </script>
+</body>
+</html>

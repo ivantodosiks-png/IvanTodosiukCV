@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamar Tech Admin</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: #0b1527;
+      color: #e9f0ff;
+      font-family: Montserrat, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 32px 16px 48px;
+    }
+    .admin-shell {
+      width: 100%;
+      max-width: 780px;
+    }
+    .panel {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    }
+    .flag {
+      color: #ffc64d;
+      font-weight: 700;
+    }
+    .muted {
+      color: #9bb0d5;
+    }
+    h1 {
+      margin: 0 0 8px;
+    }
+    p {
+      margin: 0 0 12px;
+    }
+  </style>
+ </head>
+<body>
+
+  <!-- Charlotte, this is Jake. Here's your new account login:
+Login: charlotte
+Password: admin-hamartech -->
+  <div class="admin-shell">
+    <h1>Admin-panel (lokal)</h1>
+    <p class="muted">Demo: bruk admin / admin123. Ingen ekstern server, alt lagres i nettleseren.</p>
+
+    <div class="panel">
+      <form id="loginForm" class="modal__form" method="POST" action="/wp-login.php">
+        <div class="input">
+          <label for="username">Brukernavn</label>
+          <input type="text" id="username" name="username" placeholder="admin" required>
+        </div>
+        <div class="input">
+          <label for="password">Passord</label>
+          <input type="password" id="password" name="password" placeholder="admin123" required>
+        </div>
+        <button type="submit" class="btn primary">Logg inn</button>
+        <div id="loginError" class="muted" style="color:#f87171;margin-top:6px;"></div>
+        <p class="muted">Hint: brute force mulig, ingen rate limit.</p>
+      </form>
+
+      <form id="adminForm" class="modal__form hidden">
+        <div class="grid-2">
+          <div class="input">
+            <label for="heroTitle">Hero-tittel</label>
+            <input type="text" id="heroTitle" name="heroTitle" maxlength="90">
+          </div>
+          <div class="input">
+            <label for="heroTag">Hero-tag</label>
+            <input type="text" id="heroTag" name="heroTag" maxlength="40">
+          </div>
+        </div>
+        <div class="input">
+          <label for="heroSubtitle">Hero-beskrivelse</label>
+          <textarea id="heroSubtitle" name="heroSubtitle" rows="2" maxlength="220"></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="input">
+            <label for="heroBtnPrimary">Knapp 1</label>
+            <input type="text" id="heroBtnPrimary" name="heroBtnPrimary" maxlength="40">
+          </div>
+          <div class="input">
+            <label for="heroBtnSecondary">Knapp 2</label>
+            <input type="text" id="heroBtnSecondary" name="heroBtnSecondary" maxlength="40">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="input">
+            <label for="stat1">Stat 1 tekst</label>
+            <input type="text" id="stat1" name="stat1" maxlength="30">
+          </div>
+          <div class="input">
+            <label for="stat1n">Stat 1 tall</label>
+            <input type="text" id="stat1n" name="stat1n" maxlength="10">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="input">
+            <label for="stat2">Stat 2 tekst</label>
+            <input type="text" id="stat2" name="stat2" maxlength="30">
+          </div>
+          <div class="input">
+            <label for="stat2n">Stat 2 tall</label>
+            <input type="text" id="stat2n" name="stat2n" maxlength="10">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="input">
+            <label for="stat3">Stat 3 tekst</label>
+            <input type="text" id="stat3" name="stat3" maxlength="30">
+          </div>
+          <div class="input">
+            <label for="stat3n">Stat 3 tall</label>
+            <input type="text" id="stat3n" name="stat3n" maxlength="10">
+          </div>
+        </div>
+        <div class="input">
+          <label for="card1Title">Kort 1 tittel</label>
+          <input type="text" id="card1Title" name="card1Title" maxlength="40">
+        </div>
+        <div class="input">
+          <label for="card1Text">Kort 1 tekst</label>
+          <textarea id="card1Text" name="card1Text" rows="2" maxlength="160"></textarea>
+        </div>
+        <div class="input">
+          <label for="card2Title">Kort 2 tittel</label>
+          <input type="text" id="card2Title" name="card2Title" maxlength="40">
+        </div>
+        <div class="input">
+          <label for="card2Text">Kort 2 tekst</label>
+          <textarea id="card2Text" name="card2Text" rows="2" maxlength="160"></textarea>
+        </div>
+        <div class="input">
+          <label for="card3Title">Kort 3 tittel</label>
+          <input type="text" id="card3Title" name="card3Title" maxlength="40">
+        </div>
+        <div class="input">
+          <label for="card3Text">Kort 3 tekst</label>
+          <textarea id="card3Text" name="card3Text" rows="2" maxlength="160"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Lagre</button>
+          <button type="button" class="btn ghost" id="logoutBtn">Logg ut</button>
+        </div>
+        <p class="muted">Endringer lagres i nettleserens localStorage.</p>
+        <div class="flag-box">
+          <p class="muted">FLAG #1:</p>
+          <div class="flag" id="flag1" style="opacity:0.15;"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Flag 2</title>
+  <style>
+    body {
+      background: #0b1527;
+      color: #e9f0ff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .box {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 24px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      max-width: 420px;
+    }
+    .flag { color: #ffc64d; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div id="status">Ikke autorisert</div>
+    <div id="flag" class="flag" style="display:none;">FLAG{gobuster_hidden_flag}</div>
+  </div>
+  <script>
+    (function() {
+      const token = localStorage.getItem('cr-admin-token');
+      const status = document.getElementById('status');
+      const flag = document.getElementById('flag');
+      if (token === 'true') {
+        status.textContent = 'Autorisasjon OK';
+        flag.style.display = 'block';
+      } else {
+        status.textContent = 'Ikke autorisert. Logg inn i admin først.';
+      }
+    })();
+  </script>
+</body>
+</html>
+

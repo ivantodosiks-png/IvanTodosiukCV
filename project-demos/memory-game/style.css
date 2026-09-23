@@ -1,0 +1,293 @@
+/* Modern styling for the Memory Cards game */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top left, #5a7dff 0%, #1b1b2f 45%, #0f172a 100%);
+  color: #e5e7eb;
+}
+
+::selection {
+  color: #0f172a;
+  background: #facc15;
+}
+
+/* Game container */
+.wrapper {
+  padding: 22px 22px 20px;
+  background: rgba(15, 23, 42, 0.86);
+  border-radius: 18px;
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.8),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(18px);
+}
+
+/* Game heading */
+.game-title {
+  text-align: center;
+  margin-bottom: 14px;
+  font-size: 16px;
+  line-height: 1.4;
+  max-width: 100%;
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-shadow:
+    0 0 4px rgba(56, 189, 248, 0.8),
+    0 0 10px rgba(56, 189, 248, 0.9),
+    0 0 18px rgba(37, 99, 235, 0.9);
+}
+
+/* Center the cards and details panel */
+.cards,
+.card,
+.view,
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card grid */
+.cards {
+  height: 360px;
+  width: 360px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cards .card {
+  cursor: pointer;
+  position: relative;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  height: calc(100% / 4 - 8px);
+  width: calc(100% / 4 - 8px);
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+}
+
+.cards .card:hover {
+  transform: translateY(-3px);
+}
+
+.card.shake {
+  animation: shake 0.35s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(-6px);
+  }
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+/* Card faces */
+.cards .card .view {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  transition: transform 0.28s cubic-bezier(.19,1,.22,1), box-shadow 0.28s ease;
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.65),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
+}
+
+.card .front-view {
+  background: radial-gradient(circle at 20% 0, #38bdf8 0%, #0f172a 55%, #020617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .front-view img {
+  max-width: 22px;
+  opacity: 0.9;
+  filter: drop-shadow(0 3px 4px rgba(15, 23, 42, 0.65));
+}
+
+.card .back-view {
+  background: linear-gradient(145deg, #0ea5e9, #22c55e);
+  transform: rotateY(-180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .back-view img {
+  max-width: 46px;
+  filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.7));
+}
+
+.card.flip .front-view {
+  transform: rotateY(180deg);
+}
+
+.card.flip .back-view {
+  transform: rotateY(0);
+}
+
+/* Time, moves and action panel */
+.details {
+  width: 100%;
+  margin-top: 18px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.92);
+  height: 56px;
+  justify-content: space-between;
+  box-shadow:
+    0 14px 35px rgba(15, 23, 42, 0.85),
+    0 0 0 1px rgba(148, 163, 184, 0.25);
+  color: #e5e7eb;
+}
+
+.details p {
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  padding-right: 16px;
+  border-right: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+.details p:last-of-type {
+  border-right: none;
+}
+
+.details p span {
+  margin-left: 6px;
+  color: #fbbf24;
+}
+
+.details p b {
+  font-weight: 600;
+}
+
+.details button {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 7px 18px;
+  background: linear-gradient(135deg, #facc15, #fb923c);
+  border: none;
+  box-shadow:
+    0 10px 25px rgba(248, 250, 252, 0.15),
+    0 0 0 1px rgba(251, 191, 36, 0.4);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.details button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow:
+    0 14px 32px rgba(248, 250, 252, 0.20),
+    0 0 0 1px rgba(251, 191, 36, 0.5);
+}
+
+.details button:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 18px rgba(248, 250, 252, 0.16),
+    0 0 0 1px rgba(251, 191, 36, 0.5);
+}
+
+/* Responsive layout */
+@media screen and (max-width: 700px) {
+  .wrapper {
+    padding: 22px 18px 18px;
+  }
+
+  .cards {
+    height: 320px;
+    width: 320px;
+    gap: 8px;
+  }
+
+  .card .front-view img {
+    max-width: 20px;
+  }
+
+  .card .back-view img {
+    max-width: 40px;
+  }
+
+  .details {
+    margin-top: 14px;
+    padding: 8px 14px;
+    height: 52px;
+  }
+
+  .details p {
+    font-size: 14px;
+    padding-right: 12px;
+  }
+
+  .details button {
+    padding: 6px 15px;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 18px;
+  }
+
+  .cards {
+    height: 290px;
+    width: 290px;
+    gap: 7px;
+  }
+
+  .card .back-view img {
+    max-width: 34px;
+  }
+
+  .details {
+    margin-top: 12px;
+    padding: 8px 12px;
+    height: 50px;
+  }
+
+  .details p {
+    font-size: 13px;
+  }
+
+  .details button {
+    font-size: 12px;
+    padding: 5px 14px;
+  }
+}

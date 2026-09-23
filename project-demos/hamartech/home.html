@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clash Royale Fan Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Hamar Tech</div>
+    <nav>
+      <a href="#heroes" class="nav-link">Kort</a>
+      <a href="#arenas" class="nav-link">Arenaer</a>
+      <a href="#strategy" class="nav-link">Strategier</a>
+      <a href="#community" class="nav-link">Fellesskap</a>
+    </nav>
+    <div class="navbar__actions">
+      <a class="btn secondary" href="admin.html">Admin</a>
+      <button class="btn primary" data-scroll="#download" id="download-btn">Last ned</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero__content">
+      <p class="tag" id="hero-tag">Fan-portal</p>
+      <h1 id="hero-title">Bygg din legende i Clash Royale</h1>
+      <p class="subtitle" id="hero-subtitle">Bygg kortstokker, vinn på arenaene og åpne kister. De beste tipsene, kortutvalg og siste nytt – på ett sted.</p>
+      <div class="hero__actions">
+        <button class="btn primary" data-scroll="#download" id="hero-btn-primary">Last ned spillet</button>
+        <button class="btn ghost" data-scroll="#heroes" id="hero-btn-secondary">Se kortstokker</button>
+      </div>
+      <div class="stats">
+        <div><span id="stat-1-number">150+</span><span id="stat-1-text">meta-dekker</span></div>
+        <div><span id="stat-2-number">25</span><span id="stat-2-text">arenaer</span></div>
+        <div><span id="stat-3-number">24/7</span><span id="stat-3-text">guider</span></div>
+      </div>
+    </div>
+    <div class="hero__image">
+      <div class="card-glow">
+        <img src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=900&q=80" alt="Clash Royale Art">
+      </div>
+    </div>
+  </section>
+
+  <section id="heroes" class="section cards">
+    <div class="section__header">
+      <h2>Legendariske kort</h2>
+      <p>Prøvde kombinasjoner for raske seire.</p>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="pill">Meta</div>
+        <h3 id="card-1-title">Gigant + Gnisten</h3>
+        <p id="card-1-text">Stabil bru-push med tung tank. Støtt med Lyn.</p>
+        <div class="chips">
+          <span>4.1 eliksir</span><span>Kontroll</span>
+        </div>
+        <button class="btn tiny" data-action="copy" data-text="Gigant, Gnisten, Mega-minion, Vakter, Lyn, Valkyrie, Tømmerstokk, Goblins">Kopier kortstokk</button>
+      </article>
+      <article class="card">
+        <div class="pill">Aggro</div>
+        <h3 id="card-2-title">Hog + Minioner</h3>
+        <p id="card-2-text">Raske push hver 20. sekund. Spinner syklusen med billige kort.</p>
+        <div class="chips">
+          <span>2.9 eliksir</span><span>Spam</span>
+        </div>
+        <button class="btn tiny" data-action="copy" data-text="Hog, Minioner, Isånd, Tømmerstokk, Kanon, Piler, Skjeletter, Ridder">Kopier kortstokk</button>
+      </article>
+      <article class="card">
+        <div class="pill">Forsvar</div>
+        <h3 id="card-3-title">Buedronning</h3>
+        <p id="card-3-text">Gå i kontra etter forsvar, aktiver evnen for burst på tårn.</p>
+        <div class="chips">
+          <span>3.2 eliksir</span><span>Kontroll</span>
+        </div>
+        <button class="btn tiny" data-action="copy" data-text="Dronning, Tesla, Tornado, Ridder, Rakett, Isånd, Skjeletter, Tømmerstokk">Kopier kortstokk</button>
+      </article>
+    </div>
+  </section>
+
+  <section id="arenas" class="section arenas">
+    <div class="section__header">
+      <h2>Kom deg opp gjennom arenaene</h2>
+      <p>Vit hva som åpnes neste, og forbered deg på forhånd.</p>
+    </div>
+    <div class="timeline">
+      <div class="step">
+        <div class="dot"></div>
+        <h4>Arena 10 — Byen i fremtiden</h4>
+        <p>Utnytt Gnisten og Inferno-drage mot tanker.</p>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <h4>Arena 12 — Isfjell</h4>
+        <p>Ismagikeren åpnes – topp crowd control.</p>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <h4>Arena 15 — Minefelt</h4>
+        <p>Forbered deg på Miner: feller og predictive piler avgjør kampen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="strategy" class="section strategy">
+    <div class="section__header">
+      <h2>Raske strategier</h2>
+      <p>Tre oppskrifter som redder selv tøffe matcher.</p>
+    </div>
+    <div class="columns">
+      <div class="col">
+        <h3>Bridge-kontroll</h3>
+        <p>Ikke gi initiativet. Press med små spam og tving motstanderen til å sløse eliksir.</p>
+      </div>
+      <div class="col">
+        <h3>Tung push</h3>
+        <p>Spill fra forsvar, spar eliksir og gå ut med tank + støtte. Lås med spells.</p>
+      </div>
+      <div class="col">
+        <h3>Rask syklus</h3>
+        <p>Hold snittkost under 3.0 for å holde motstanderen under konstant press.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="section community">
+    <div class="section__header">
+      <h2>Fellesskap</h2>
+      <p>Abonner så du ikke mister patch-notater og turneringer.</p>
+    </div>
+    <div class="cta-grid">
+      <div class="cta">
+        <h3>Discord</h3>
+        <p>Diskuter metaen, finn klan eller duo-partner.</p>
+        <a class="btn secondary" href="https://discord.com/invite/clashroyale" target="_blank" rel="noopener">Bli med</a>
+      </div>
+      <div class="cta">
+        <h3>Youtube</h3>
+        <p>Ukens beste dekk, streams og pro-analyser.</p>
+        <a class="btn secondary" href="https://www.youtube.com/@ClashRoyale" target="_blank" rel="noopener">Se nå</a>
+      </div>
+      <div class="cta">
+        <h3>Twitter/X</h3>
+        <p>Raske nyheter om balanse og events.</p>
+        <a class="btn secondary" href="https://twitter.com/ClashRoyale" target="_blank" rel="noopener">Abonner</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="section download">
+    <div class="download__card">
+      <div>
+        <h2>Klar for kongelig kamp?</h2>
+        <p>Trykk for å gå til butikken og laste ned Clash Royale.</p>
+      </div>
+      <div class="download__actions">
+        <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.supercell.clashroyale" target="_blank" rel="noopener">Google Play</a>
+        <a class="btn ghost" href="https://apps.apple.com/app/id1053012308" target="_blank" rel="noopener">App Store</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>Fan-laget side. Uoffisiell.</div>
+    <div class="footer__links">
+      <a href="#strategy" class="nav-link">Guider</a>
+      <a href="#community" class="nav-link">Fellesskap</a>
+      <a href="#download" class="nav-link">Last ned</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Kortstokken er kopiert!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

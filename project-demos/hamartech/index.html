@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamar Tech CTF — start</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { margin:0; font-family: Arial, sans-serif; background:#0b1527; color:#e9f0ff; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    .card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:24px; max-width:520px; width:90%; box-shadow:0 12px 30px rgba(0,0,0,0.35); text-align:center; }
+    h1 { margin:0 0 6px; font-size:26px; }
+    p { margin:0 0 14px; color:#c8d4f0; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#3b82f6; color:#fff; border:none; border-radius:10px; padding:12px 16px; font-weight:700; cursor:pointer; text-decoration:none; }
+    .btn:disabled { opacity:0.6; cursor:not-allowed; }
+    .timer { font-size:32px; font-weight:700; letter-spacing:1px; margin:10px 0 18px; }
+    .flags { display:grid; gap:12px; margin-top:14px; text-align:left; }
+    label { font-size:13px; color:#b6c3e3; }
+    input { width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.06); color:#e9f0ff; }
+    .status { font-size:13px; margin-top:6px; }
+    .ok { color:#4ade80; }
+    .err { color:#f87171; }
+    .hint { font-size:12px; color:#94a3b8; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hamar Tech — CTF startside</h1>
+    <p>Trykk på knappen for å åpne oppgaven. Timeren starter, og du kan lime inn flaggene nedenfor.</p>
+
+    <a id="startBtn" class="btn" href="home.html" target="_blank" rel="noopener">Åpne oppgaven</a>
+    <div class="timer" id="timer">00:00</div>
+
+    <div class="flags" id="flagsBlock" style="display:none;">
+      <div>
+        <label for="flag1">FLAGG #1</label>
+        <input id="flag1" placeholder="FLAG{...}" autocomplete="off" />
+        <div class="status" id="flag1Status"></div>
+      </div>
+      <div>
+        <label for="flag2">FLAGG #2</label>
+        <input id="flag2" placeholder="FLAG{...}" autocomplete="off" />
+        <div class="status" id="flag2Status"></div>
+      </div>
+      <p class="hint">Hint: #1 i adminpanelet, #2 i en skjult katalog.</p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      function buildFlag1() {
+        // Hidden flag #1 (admin panel)
+        const codes = [
+          70, 76, 65, 71, 123, 97, 100, 109, 105, 110, 95, 112, 97,
+          110, 101, 108, 95, 117, 110, 108, 111, 99, 107, 101, 100, 125
+        ];
+        return String.fromCharCode(...codes);
+      }
+
+      function buildFlag2() {
+        // Hidden flag #2 (hidden directory)
+        const codes = [
+          70, 76, 65, 71, 123, 103, 111, 98, 117, 115, 116, 101, 114, 95,
+          104, 105, 100, 100, 101, 110, 95, 102, 108, 97, 103, 125
+        ];
+        return String.fromCharCode(...codes);
+      }
+
+      const VALID = {
+        flag1: buildFlag1(),
+        flag2: buildFlag2()
+      };
+      const state = { flag1: false, flag2: false };
+      let completionNotified = false;
+
+      let timerId = null;
+      let startedAt = null;
+
+      const startBtn = document.getElementById('startBtn');
+      const timerEl = document.getElementById('timer');
+      const flagsBlock = document.getElementById('flagsBlock');
+      const inputs = {
+        flag1: document.getElementById('flag1'),
+        flag2: document.getElementById('flag2')
+      };
+      const statuses = {
+        flag1: document.getElementById('flag1Status'),
+        flag2: document.getElementById('flag2Status')
+      };
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function updateTimer() {
+        const diff = Math.floor((Date.now() - startedAt) / 1000);
+        const m = Math.floor(diff / 60);
+        const s = diff % 60;
+        timerEl.textContent = pad(m) + ':' + pad(s);
+      }
+
+      function startTimer() {
+        if (timerId) return;
+        startedAt = Date.now();
+        flagsBlock.style.display = 'grid';
+        timerId = setInterval(updateTimer, 1000);
+        updateTimer();
+      }
+
+      function setStatus(which, ok) {
+        state[which] = !!ok;
+        statuses[which].textContent = ok ? 'Riktig!' : 'Feil';
+        statuses[which].className = 'status ' + (ok ? 'ok' : 'err');
+      }
+
+      function checkCompletion() {
+        if (completionNotified) return;
+        if (state.flag1 && state.flag2) {
+          completionNotified = true;
+          setTimeout(() => {
+            window.location.href = 'thanks.html';
+          }, 600);
+        }
+      }
+
+      function validate(which) {
+        const val = inputs[which].value.trim();
+        if (!val) {
+          state[which] = false;
+          statuses[which].textContent = '';
+          statuses[which].className = 'status';
+          return;
+        }
+        setStatus(which, val === VALID[which]);
+        checkCompletion();
+      }
+
+      startBtn.addEventListener('click', startTimer);
+
+      Object.keys(inputs).forEach(key => {
+        inputs[key].addEventListener('input', () => validate(key));
+        inputs[key].addEventListener('blur', () => validate(key));
+      });
+    })();
+  </script>
+</body>
+</html>
